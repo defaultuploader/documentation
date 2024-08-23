@@ -1,0 +1,13 @@
+{
+  "module": "esnext",
+  "moduleResolution": "node",
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@assets/*": ["src/assets/*"],
+      "@public/*": ["src/public/*"]
+    }
+  }
+}

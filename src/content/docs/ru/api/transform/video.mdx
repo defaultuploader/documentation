@@ -1,0 +1,100 @@
+---
+title: Видео
+description: A reference page in my new Starlight docs site.
+---
+
+import Image from '@components/Image.astro'
+import Video from '@components/Video.astro'
+import { exampleSource } from "../../../../../components/examples.js";
+import { Aside } from "@astrojs/starlight/components";
+import { Badge } from "@astrojs/starlight/components";
+
+Трансформация видео ресурсоемкая операция, поэтому она занимает длительное время и сильно зависит от размера исходного файла.
+Рекомендуется используется <a href="../async-transform">асинхронную трансформацию</a> для преобразования видео.
+
+Если видео файл еще не преобразовался, то будет отправлен ответ с заголовком `423`, это означает, что файл еще готов.
+
+Пример:
+```
+// оптимизировать размер видео ?q_a
+https://api.defaultuploader.com/v1/video/upload/token/sample.mp4?q_a
+```
+
+### q_auto
+<Badge text="alias: q_a" variant="caution" size="small" />
+
+Устанавливает оптимальные настройки для видео, сохраняя качество и снижая размер файла.
+```
+?q_a
+```
+
+<Video sources={exampleSource.videos} param="q_a" />
+
+<Aside title="Размер видео уменьшился в 7 раз!" type="tip">
+  Размер оригинального видео 50мб, после оптимизации он стал **7мб**
+</Aside>
+
+### width
+<Badge text="alias: w" variant="caution" size="small" />
+
+Создает видео с заданной шириной с правильными пропорциями.
+```
+min 0, max 5000
+```
+
+<Video sources={exampleSource.videos} param="w=300" />
+
+### height
+<Badge text="alias: h" variant="caution" size="small" />
+
+Создает видео с заданной высотой с правильными пропорциями.
+```
+min 0, max 5000
+```
+
+<Video sources={exampleSource.videos} param="h=300" />
+
+### format
+<Badge text="alias: f" variant="caution" size="small" />
+
+Изменяет формат изображения.
+```
+Поддерживаемые форматы
+MP4, MOV, WEBM, AVI, по умолчанию mp4
+```
+
+### vertical
+<Badge text="alias: vt" variant="caution" size="small" />
+
+Создает видео с форматом 9х16, вырезая по центру.
+```
+?vt
+```
+
+<Video sources={exampleSource.videos} param="vt" />
+
+<Aside title="Идеально для социальных сетей" type="tip">
+  Мощная оптимизация видео с 50мб до **2.94мб** и популярный формат 9х16 для мобильных устройств
+</Aside>
+
+### thumbnail
+
+Создает изображение превью из видео.
+
+```
+?thumbnail
+По умолчанию берется кадр из первых 100мс продолжительности видео
+```
+
+<Image sources={exampleSource.videos} param="thumbnail" />
+
+### duration
+
+В какой момент создать превью для видео (thumbnail).
+
+```
+1 = 100мс
+Работает только со свойством thumbnail
+```
+
+<Image sources={exampleSource.videos} param="thumbnail&duration=311" />

@@ -1,0 +1,76 @@
+---
+title: REST
+description: A reference page in my new Starlight docs site.
+prev: false
+---
+
+import { Code } from "@astrojs/starlight/components";
+
+export const postCode = `
+https://api.defaultuploader.com/v1/upload
+# multipart/form-data
+# Требуется заголовок — authorization: SECRET_CLIENT_TOKEN
+`
+
+export const deleteCode = `
+https://api.defaultuploader.com/v1/image/upload/S3_PATH_ORIGINAL
+# Требуется заголовок — authorization: SECRET_CLIENT_TOKEN
+`
+
+### Составной POST запрос multipart/form-data
+<Code code={postCode} lang="sh" title="METHOD: POST" />
+Для загрузки файлов необходимо получить секретный ключ в личном кабинете Default uploader и
+добавить заголовок `Authorization` в запрос:
+
+export const exampleCodeCurl = `curl --location 'https://api.defaultuploader.com/v1/upload' \
+--header 'Authorization: YOUR_SECRET_CLIENT_TOKEN' \
+--form 'file=@"/C:/path_to_file/file_example_JPG_100kB.jpg"'`;
+export const fileNameBash = 'bash';
+
+<Code code={exampleCodeCurl} lang="sh" title={fileNameBash} />
+
+Вы получите следующий ответ от сервера:
+
+export const exampleCodeResponse = `
+[
+    {
+        "sourceName": "7uLbiXh7867H7dEPpsubV9.png",
+        "src": "https://api.defaultuploader.com/v1/image/upload/azxwjk4PCkLTFbuUYiQZ1j/7uLbiXh7867H7dEPpsubV9.png",
+        "originalSrc": "https://hb.vkcs.cloud/defaultuploader/image/png/7uLbiXh7867H7dEPpsubV9.png",
+        "originalName": "dark_theme.png",
+        "s3PathOriginal": "image/png/7uLbiXh7867H7dEPpsubV9.png",
+        "s3Path": "image/png/7uLbiXh7867H7dEPpsubV9.png",
+        "options": {},
+        "size": 1400308,
+        "mimeType": "image",
+        "format": "png"
+    }
+]
+`;
+
+<Code code={exampleCodeResponse} lang="json" title="JSON" />
+
+### Составной PUT запрос multipart/form-data с подписанной ссылкой
+
+В <a href="./presigned-url" >этом</a> руководстве вы узнаете как получить подписанную ссылку.
+
+export const exampleCodeCurlPut = `https://api.defaultuploader.com/v1/upload/sign/7uLbiXh7867H7dEPpsubV9/5447114698657692x-params12d848eaca5282asdasda44766906ebx-token1427afc2d42ab2a200555c5d6b47a48b29cbffaac19cf572314ddafasddfd627ac0cdfabd6a134ggjhoda42728180a845e719ca0e0ce797ac/my-custom-folder.com?expirationIn=3600`;
+
+<Code code={exampleCodeCurlPut} lang="sh" title={fileNameBash} />
+
+### GET
+<Code code="https://api.defaultuploader.com/v1/image/upload/CLIENT_TOKEN/SOURCE_NAME.EXTENSION" lang="sh" title="METHOD: GET" />
+Запрос **GET** отдает файл со следующими заголовками:
+
+| Key            | Value                                |
+|----------------|--------------------------------------|
+| cache-control  | public, max-age=604800               |
+| etag           | image/png/7uLbiXh7867H7dEPpsubV9.png |
+| accept-ranges  | bytes                                |
+| content-length | 1400308                              |
+| content-range  | bytes 0 - 1400308                    |
+| content-type   | image/png                            |
+
+### DELETE
+Удаляет оригинал файла и все производные от него файлы.
+<Code code={deleteCode} lang="sh" title="METHOD: DELETE" />

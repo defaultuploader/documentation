@@ -1,0 +1,31 @@
+---
+title: Selectel
+description: A reference page in my new Starlight docs site.
+prev: false
+---
+import {Aside} from "@astrojs/starlight/components";
+import { Steps } from '@astrojs/starlight/components';
+
+
+
+<Steps>
+1. <a href="https://mcs.mail.ru/" target="blank">Перейдите в VK CLOUD</a> и на вкладку Объектное хранилище -> Бакеты
+
+2. Нажмите на **Добавить**
+3. Введите название бакета
+4. Настройка ACL по умолчанию: **public-read**
+5. Остальные настройки оставьте как есть и нажмите **Create a Bucket**
+6. Перейдите на вкладку **Объектное хранилище** -> **Бакеты**
+7. Нажмите на название бакета -> **Ключи**
+8. Нажмите на **Добавить ключ**
+9. Введите имя нажмите **Создать**
+10. Сохраните **Access Key ID** и **Secret Key** [в личном кабинете](https://admin.defaultuploader.com)
+</Steps>
+<Aside title="File endpoint и Region">
+  ```
+  endpoint_url: https://hb.vkcs.cloud или https://hb.ru-msk.vkcs.cloud
+  region: ru-msk
+  ```
+</Aside>
+
+

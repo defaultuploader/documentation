@@ -1,0 +1,34 @@
+---
+title: Backblaze
+description: A reference page in my new Starlight docs site.
+prev: false
+next:
+  link: ../first-file
+  label: Загрузите первый файл
+---
+import {Aside} from "@astrojs/starlight/components";
+import { Steps } from '@astrojs/starlight/components';
+
+<Steps>
+1. <a href="https://www.backblaze.com/" target="blank">Перейдите в Backblaze</a> и создайте учетную запись
+
+2. Перейдите на страницу <a href="https://secure.backblaze.com/b2_buckets.htm" target="blank">создания бакета</a>
+3. Нажмите на **Create a Bucket**
+4. Введите название бакета
+5. Установите в Files in Bucket are: > **Public**
+6. Остальные настройки оставьте как есть и нажмите **Create a Bucket**
+7. Перейдите на вкладку Application Keys и нажмите **Add a New Application Key**
+8. Сохраните значения, **секретный ключ показывается только один раз**
+9. Сохраните значения, **секретный ключ показывается только один раз**
+10. Сохраните **Access Key ID** и **Secret Key** endpoint_url и region [в личном кабинете](https://admin.defaultuploader.com)
+</Steps>
+<Aside title="File endpoint и Region">
+  ```
+  // лучше сверить с документацией провайдера
+  // endpoint указан на карточке вашего бакета
+  endpoint_url: (пример) https://s3.us-east-005.backblazeb2.com
+  region: Смотрите из endpoint_url, "us-east-005" эта часть является регионом
+  ```
+</Aside>
+
+

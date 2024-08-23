@@ -1,0 +1,54 @@
+---
+title: Загрузите свой первый файл
+description: A reference page in my new Starlight docs site.
+prev:
+  link: ./s3-storage
+  label: Настроить S3 хранилище
+---
+
+import { Code } from '@astrojs/starlight/components';
+
+Нажмите на **Проверить подключение** в блоке **Настройки для подключения S3 и CDN** в личном кабинете,
+если вы увидели попап с успешным подключение, подздравляю!
+
+Самое время загрузить файл и трансформировать его!
+
+Есть несколько способов загрузить файл:
+- Postman
+- Curl
+- Через интерфейс S3 хранилища
+- и др.
+
+В этом руководстве мы загрузим через Curl, другие способы можно будет найти на странице API.
+
+> **YOUR_SECRET_CLIENT_TOKEN** найдите в личном кабинете
+
+export const exampleCodeCurl = `curl --location 'https://api.defaultuploader.com/v1/upload' \
+--header 'Authorization: YOUR_SECRET_CLIENT_TOKEN' \
+--form 'file=@"/C:/path_to_file/file_example_JPG_100kB.jpg"'`;
+export const fileNameBash = 'bash';
+export const highlights = ['YOUR_SECRET_CLIENT_TOKEN', 'CMS'];
+
+<Code code={exampleCodeCurl} lang="sh" title={fileNameBash} mark={highlights} />
+
+Вы получите следующий ответ:
+
+export const exampleCodeResponse = `
+{
+  "src": "https://api.defaultuploader.com/v1/image/upload/mvgfC8E5UkfrkWTHq9ydYc/sQeWeYhRczFmpPKrSihVy1.jpg",
+  "originalSrc": "https://s3.ru-1.storage.selcloud.ru/files/image/jpg/sQeWeYhRczFmpPKrSihVy1.jpg",
+  "originalName": "file_example_JPG_100kB.jpg",
+  "s3PathOriginal": "image/jpg/sQeWeYhRczFmpPKrSihVy3.jpg",
+  "s3Path": "image/jpg/sQeWeYhRczFmpPKrSihVy3.jpg",
+  "options": {},
+  "size": 102117,
+  "mimeType": "image",
+  "format": "jpg"
+}
+`;
+
+export const fileNameJS = 'js';
+
+<Code code={exampleCodeResponse} lang="js" title={fileNameJS} />
+
+Скопируйте строку из **src** ключа, вставьте в браузер, добавьте параметр **?w=100** и вуаля!

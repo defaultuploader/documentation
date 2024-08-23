@@ -1,0 +1,42 @@
+---
+title: Использование CDN с Default Uploader
+description: A reference page in my new Starlight docs site.
+prev:
+  link: ./s3-storage
+  label: Как подключить S3
+---
+
+import Image from '@components/Image.astro'
+import {Aside} from "@astrojs/starlight/components"
+
+import Schema1Black from '../../../../../public/schema1_black.webp';
+import Schema1White from '../../../../../public/schema1_white.webp';
+
+import Schema2Black from '../../../../../public/schema2_black.webp';
+import Schema2White from '../../../../../public/schema2_white.webp';
+
+Default Uploader не имеет собственного CDN, поэтому для максимально эффективной работы сервиса рекомендуется направлять ваш трафик через CDN на Default Uploader.
+
+<Aside type="caution" title="Важно">
+  Для производственной эксплуатации строго рекомендуется подключить CDN.
+  * В настройках CDN убедитесь, что параметры из запросов не игнорируются.
+  * По умолчанию сервис отдает файл и заголовок со временем жизни кэша 30 дней для успешного ответа
+</Aside>
+
+## Схема подключения CDN
+
+### Лучшее решения для бизнеса
+Оптимальный вариант использования сервиса – направить CDN на https://api.defaultuploader.com.
+Это позволит вам воспользоваться всеми преимуществами динамической трансформации и оптимизации ресурсов, без необходимости сложной настройки вашего приложения.
+
+<Image href="#" sources={[Schema1Black, Schema1White]} alt="CDN schema" />
+
+### Максимальная выгода от Default uploader
+Направьте ваш CDN на объектное хранилище и загружайте файлы с асинхронной трансформацией.
+Все следующие запросы к файлам будут обрабатываться только вашим CDN, без использования ресурсов Default Uploader.
+
+<Aside type="caution" title="Внимание">
+  Имейте в виду, в этом сценарии не работает оптимизация 'на лету'
+</Aside>
+
+<Image href="#" sources={[Schema2Black, Schema2White]} alt="CDN schema" />

@@ -1,0 +1,41 @@
+---
+title: API для картинок и видео
+description: Get started building your docs site with Starlight.
+template: splash
+hero:
+  tagline: Загружайте, храните, преобразовывайте, оптимизируйте и доставляйте изображения, видео и документы.
+  image:
+    file: ../../../assets/houston.webp
+    dark: ../../../assets/houston.webp
+    light: ../../../assets/houston.webp
+  actions:
+    - text: Начать интеграцию
+      link: ru/introduction/motivation/
+      icon: right-arrow
+      variant: primary
+    - text: В личный кабинет
+      link: https://admin.defaultuploader.com
+      icon: external
+      attrs:
+        target: blank
+---
+
+import {Card, CardGrid} from '@astrojs/starlight/components';
+
+<CardGrid>
+	<Card title="Простой и функциональный API" icon="pencil">
+		Просто добавьте параметры к URL.
+    ```js
+    image.jpg?width=100
+    ```
+	</Card>
+	<Card title="Свободный выбор провайдера S3 и CDN" icon="puzzle">
+		Подключите любого провайдера S3 и CDN, без каких-либо условий.
+	</Card>
+	<Card title="Дополнительные возможности" icon="setting">
+		Ленивая трансформация, сканирование нежелательного контента, удаление фона, presigned URL для загрузки файлов и другие.
+	</Card>
+	<Card title="Легкая миграция" icon="sun">
+		Default Uploader не привязан к файловой структуре в S3, подключите существующее хранилище с файлами и начните работу.
+	</Card>
+</CardGrid>

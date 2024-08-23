@@ -1,0 +1,8 @@
+name: Deploy documentation
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: sleavely/node-awscli:20.x
+    steps:
+      - run: npm run build
+      - run: aws --endpoint-url=https://storage.yandexcloud.net s3 cp dist/ s3://docs.defaultuploader.com --recursive

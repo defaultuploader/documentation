@@ -1,0 +1,35 @@
+---
+title: Асинхронные трансформации
+description: A reference page in my new Starlight docs site.
+---
+
+import { Code } from "@astrojs/starlight/components";
+import { FileTree } from '@astrojs/starlight/components';
+import { Aside } from "@astrojs/starlight/components";
+
+Включите эту опцию в личном кабинете, чтобы обрабатывать файлы, которые были загружены другой системой.
+Это полезно, когда у вас есть уже загруженные файлы и вы хотите интегрировать Default Uploader в свое приложение.
+
+Например у вас есть с бакет с файлами примерно с такой структурой:
+
+<FileTree>
+  - bucket/ — корневая папка бакета
+    - mysite.com — первый уровень вложенности
+      - cats — второй уровень вложенности
+        - image — третий...
+          - n... — любой уровень вложенности
+            - file.jpg — название файла
+
+</FileTree>
+
+Для того чтобы получить файл вам нужно посмтрить такой **GET** запрос:
+- Необходимо взять весь путь от корневой папки в бакете и вставить после CLIENT_TOKEN
+
+<Code code="https://api.defaultuploader.com/v1/image/upload/CLIENT_TOKEN/mysite.com/cats/image/n.../file.jpg" lang="sh" title="METHOD: GET" />
+
+И простым добавлением параметра вы с легкостью трансформируете файл!
+
+<Aside title="Легкая миграция со сторонних решений">
+  Cloudinary, Uploadcare и другие сервисы позволяют на платных тарифах создавать бэкапы в своих S3 хранилищах,
+  вам останется только подключить это хранилище к Default Uploader и вы сможете использовать свои ресурсы намного экономичнее!
+</Aside>

@@ -3,6 +3,9 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
+	redirects: {
+		'/': '/ru'
+	},
 	integrations: [
 		starlight({
 			components: {
@@ -11,7 +14,7 @@ export default defineConfig({
 			editLink: {
 				baseUrl: 'https://github.com/withastro/starlight/edit/main/',
 			},
-			favicon: '/public/favicon.ico',
+			favicon: './favicon.ico',
 			customCss: [
 				'./src/styles/custom.css',
 			],

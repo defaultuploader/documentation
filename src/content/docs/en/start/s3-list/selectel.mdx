@@ -3,28 +3,59 @@ title: Selectel
 description: A reference page in my new Starlight docs site.
 prev: false
 ---
-import {Aside} from "@astrojs/starlight/components";
+import { Aside } from "@astrojs/starlight/components";
 import { Steps } from '@astrojs/starlight/components';
 
 
+#### Создайте пользователя
 
 <Steps>
-1. <a href="https://mcs.mail.ru/" target="blank">Перейдите в VK CLOUD</a> и на вкладку Объектное хранилище -> Бакеты
+1. Создайте учетную запись <a href="https://my.selectel.ru/profile/users_management/users?type=panel" target="blank">Selectel</a>
 
-2. Нажмите на **Добавить**
-3. Введите название бакета
-4. Настройка ACL по умолчанию: **public-read**
-5. Остальные настройки оставьте как есть и нажмите **Create a Bucket**
-6. Перейдите на вкладку **Объектное хранилище** -> **Бакеты**
-7. Нажмите на название бакета -> **Ключи**
-8. Нажмите на **Добавить ключ**
-9. Введите имя нажмите **Создать**
-10. Сохраните **Access Key ID** и **Secret Key** [в личном кабинете](https://admin.defaultuploader.com)
+2. Создайте <a href="https://my.selectel.ru/profile/users_management/users?type=service" target="blank">пользователя</a>
+3. Выберите **Сервисный пользователь**
+4. Роль установите **Пользователь объектного хранилища**
+5. Выберите ваш проект из списка
 </Steps>
+
+#### Создайте S3 ключ
+
+<Steps>
+1. Перейдите на вкладку **Сервисные пользователи**
+
+2. Выберите созданного пользователя
+3. Нажмите **Добавить ключ** в S3 Ключи
+4. Нажмите сгенерировать и сохраните данные
+</Steps>
+
+#### Создайте бакет (Контейнер)
+
+<Steps>
+1. Перейдите во вкладку **Объектное хранилище** -> **Контейнеры**
+
+2. Нажмите кнопку **Создать контейнер**
+3. Сделайте его **публичным**
+4. В **адресации** поставьте галочку перед **Virtual-hosting**
+</Steps>
+
+#### Настройте политику доступа в контейнере
+
+<Steps>
+1. Перейдите в только что созданный контейнер -> **Политика доступа**
+
+2. Нажмите создать **Политику доступа**
+3. Придумайте имя правила, например "default uploader policy"
+4. Доступ **разрешить**
+5. Пользователи **Авторизованные** и выберите созданного пользователя
+6. Набор действий **Все**
+7. Внизу нажмите кнопку **Сохранить**
+</Steps>
+
 <Aside title="File endpoint и Region">
   ```
-  endpoint_url: https://hb.vkcs.cloud или https://hb.ru-msk.vkcs.cloud
-  region: ru-msk
+  // лучше сверить с документацией провайдера
+  endpoint_url: https://s3.ru-1.storage.selcloud.ru
+  region: ru-1
   ```
 </Aside>
 

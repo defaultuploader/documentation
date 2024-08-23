@@ -1,0 +1,236 @@
+---
+title: Изображения
+description: A reference page in my new Starlight docs site.
+---
+
+import Image from '@components/Image.astro'
+import { exampleSource } from "../../../../../components/examples.js";
+import { Aside } from "@astrojs/starlight/components";
+import { Badge } from "@astrojs/starlight/components";
+
+Чтобы преобразовать изображение, необходимо сделать запрос к файлу с параметрами.
+Сервис создаст новый файл, отправит его ответом на запрос и сохранит в ваше хранилище.
+
+При следующих запросах с такими же параметрами, будет отдаваться уже созданный файл.
+
+Пример:
+```
+// создать новое изображение с шириной 100px с сохранением пропорций
+https://api.defaultuploader.com/v1/image/upload/token/sample.jpg?w=100
+```
+
+### width
+<Badge text="alias: w" variant="caution" size="small" />
+
+Создает изображение с заданной шириной с правильными пропорциями.
+```
+min 0, max 5000
+```
+
+<Image sources={exampleSource.images} alt="Ширина" param="w=100" figcaption/>
+<Image sources={exampleSource.images} alt="Ширина" param="w=200" />
+<Image sources={exampleSource.images} alt="Ширина" param="w=300" />
+
+### height
+<Badge text="alias: h" variant="caution" size="small" />
+
+Создает изображение с заданной высотой с правильными пропорциями.
+```
+min 0, max 5000
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=100" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=200" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=300" />
+
+### format
+<Badge text="alias: f" variant="caution" size="small" />
+
+Изменяет формат изображения.
+```
+Поддерживаемые форматы
+JPEG, PNG, WebP, AVIF, TIFF, GIF, SVG, HEIC
+```
+
+### quality
+<Badge text="alias: q" variant="caution" size="small" />
+<br/>
+```
+min 0, max 100 значение по умолчанию = 75
+```
+Изменить качество изображения.
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="q=100" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="q=1" />
+
+### dpr
+<br/>
+```
+1, 2 — по умолчанию 1
+```
+
+Поддержка экранов с высоким разрешением, функция просто увеличивает размер изображения в 2 раза.
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="w=100&dpr=1" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="w=100&dpr=2" />
+
+### animated
+<Badge text="alias: a" variant="caution" size="small" />
+<br/>
+```
+animated=false
+```
+
+Отключить анимацию у giff или webp
+
+<Image sources={exampleSource.animatedImages} alt="Пример изображения с параметрами" param="animated=false" />
+<Image sources={exampleSource.animatedImages} alt="Пример изображения с параметрами" />
+
+### fit
+
+Как следует изменить размер/обрезать изображение, чтобы оно соответствовало целевому размеру(ам).
+```
+cover, contain, fill, inside, outside
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=200&w=500&fit=contain" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=200&w=500&fit=cover" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=200&w=500&fit=fill" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=200&w=500&fit=inside" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=200&w=500&fit=outside" />
+
+### func
+
+Умный кроп. При помощии ИИ находит "интересное" место на изображении или лицо и обрезает его по центру.
+
+```
+face, auto
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=500&w=500&func=face" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=500&w=500" />
+
+### zoom
+<Badge text="alias: z" variant="caution" size="small" />
+Опциональный параметр для "умного" кропа. Регулирует отступы.
+
+```
+min 0.1, max 1
+0.1 - это 10% от стороны изображения
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=600&w=600&func=face&zoom=1" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=600&w=600&func=face&zoom=0.3" />
+
+### blur
+Создает размытое изображение
+
+```
+min 0.3, max 1000
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="blur=10" />
+
+### negate
+Создает "негатив" изображение
+
+```
+?negate
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="negate" />
+
+### normalize_lower
+Повысьте контрастность выходного изображения, растянув его яркость для покрытия полного динамического диапазона
+
+```
+min 1, max 99
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="normalize_lower=65" />
+
+### normalize_upper
+Повысьте контрастность выходного изображения, растянув его яркость для покрытия полного динамического диапазона
+
+```
+min 1, max 99
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="normalize_upper=95" />
+
+### saturation
+Установите насыщенность изображения
+
+```
+min 0.1
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="saturation=0.1" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="saturation=1.5" />
+
+### brightness
+Установите яркость изображения
+
+```
+min 0.1
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="brightness=0.1" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="brightness=1.5" />
+
+### hue
+Установите яркость изображения
+
+```
+min 1
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="hue=25" />
+
+### lightness
+Установите тон изображения
+
+```
+min 0.1
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="lightness=30" />
+
+### greyscale
+Преобразует изображение, сделав его черно-белым
+
+```
+?greyscale
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="greyscale" />
+
+### radius
+Скругляет края изображения
+
+```
+min 0 max 100
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="rs=5" />
+
+Чтобы создать круглое изображение, нужно установить равные стороны
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="rs=50&w=400&h=400" />
+
+### remove_background
+<Badge text="alias: rm_bg" variant="caution" size="small" />
+Удаляет фон на изображении
+
+```
+?rm_bg
+```
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="rm_bg" />
+
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="rm_bg&func=face&z=0.3&rs=50" />
+<Aside title="Просто создать аватарку" type="tip">
+  Добавьте параметры удаления фона, "умный" кроп, зум и скругления краев
+</Aside>
+
+### super_resolution <Badge text="скоро" variant="tip" size="small" />
+С помощью ИИ увеличивает разрешение изображения

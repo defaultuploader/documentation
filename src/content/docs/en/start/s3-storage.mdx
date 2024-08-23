@@ -1,11 +1,14 @@
 ---
 title: Как подключить хранилище S3
 description: A reference page in my new Starlight docs site.
-next: false
+next:
+  link: ./first-file
+  label: Загрузить файл
 ---
 
 import { CardGrid } from '@astrojs/starlight/components';
 import ImageCardLink from '@components/ImageCardLink.astro'
+import { Aside } from "@astrojs/starlight/components";
 
 import VKBlack from '../../../../../public/vkc_inline_black.svg';
 import VKWhite from '../../../../../public/vkc_inline_white.svg';
@@ -23,17 +26,16 @@ import SelectelBlack from '../../../../../public/selectel_white.svg';
 В большинстве случаев алгоритм одинаковый, нужно создать сервисный аккаунт, получить secret и access key и создать бакет.
 **Endpoint url** и **region** можно найти в документации у провайдеров.
 
-Для тестирования можно использовать локально развернутый MinIO с доступом в интернет.
+<Aside type="tip">
+  Для тестирования можно использовать локально развернутый MinIO с доступом в интернет.
+</Aside>
 
-Ниже представлены инструкции для создания и подключения S3 хранилища.
+Ниже представлено несколько инструкций для создания и подключения S3 хранилища, список будет пополняться.
 
 ### Инструкции:
 
-<div id="s3-list">
-  <CardGrid>
-    <ImageCardLink href="/ru/start/s3-list/vk" sources={[VKBlack, VKWhite]} alt="VK Cloud logo" />
-    <ImageCardLink href="/ru/start/s3-list/backblaze" sources={[BackblazeBlack, BackblazeWhite]} alt="Backblaze logo" />
-    <ImageCardLink href="/ru/start/s3-list/selectel" sources={[SelectelBlack, SelectelWhite]} alt="Selectel logo" />
-  </CardGrid>
-</div>
-
+<CardGrid>
+  <ImageCardLink href="/ru/start/s3-list/vk" sources={[VKBlack, VKWhite]} alt="VK Cloud logo" />
+  <ImageCardLink href="/ru/start/s3-list/backblaze" sources={[BackblazeBlack, BackblazeWhite]} alt="Backblaze logo" />
+  <ImageCardLink href="/ru/start/s3-list/selectel" sources={[SelectelBlack, SelectelWhite]} alt="Selectel logo" />
+</CardGrid>

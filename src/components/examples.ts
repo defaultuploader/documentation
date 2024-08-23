@@ -1,7 +1,7 @@
 export const exampleSource = {
     images: [
         {
-            src: 'https://api.defaultuploader.com/v1/image/upload/66c78a3b3438de9506dd5e93/nk1r2UBEB3LJL9m18jsR2d.png'
+            src: 'https://api.defaultuploader.com/v1/image/upload/66c78a3b3438de9506dd5e93/gmEYbirrFzrPkAS4nVgTw1.png'
         },
         {
             src: 'https://api.defaultuploader.com/v1/image/upload/66c78a3b3438de9506dd5e93/nk1r2UBEB3LJL9m18jsR2d.png'
@@ -9,10 +9,10 @@ export const exampleSource = {
     ], // [0] dark theme, [1] light theme
     animatedImages: [
         {
-            src: 'https://api.defaultuploader.com/v1/image/upload/66c78a3b3438de9506dd5e93/dYJNQGace3e3SBG8gkbtgj.gif'
+            src: 'https://api.defaultuploader.com/v1/image/upload/66c78a3b3438de9506dd5e93/isL7RaVwr7uLxiRknPpkjZ.webp'
         },
         {
-            src: 'https://api.defaultuploader.com/v1/image/upload/66c78a3b3438de9506dd5e93/dYJNQGace3e3SBG8gkbtgj.gif'
+            src: 'https://api.defaultuploader.com/v1/image/upload/66c78a3b3438de9506dd5e93/nSbySZRnR7fyMpFwiuvpCU.webp'
         }
     ], // [0] dark theme, [1] light theme
     videos: [

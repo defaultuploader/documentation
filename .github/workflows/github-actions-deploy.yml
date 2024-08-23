@@ -2,7 +2,7 @@ name: Deploy documentation
 on: [push]
 jobs:
   Explore-GitHub-Actions:
-    runs-on: sleavely/node-awscli:18.x
+    runs-on: doctrine/nodejs-aws-cli
     steps:
       - run: npm run build
       - run: aws --endpoint-url=https://storage.yandexcloud.net s3 cp dist/ s3://docs.defaultuploader.com --recursive

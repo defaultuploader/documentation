@@ -1,0 +1,164 @@
+---
+title: Локальное подключение S3 к Default Uploader
+next:
+  link: ../first-file
+  label: Загрузить файл
+---
+
+import { Code } from "@astrojs/starlight/components";
+import { FileTree } from '@astrojs/starlight/components';
+
+В этом руководстве мы локально запустим MinIO, подключим его к Default Uploader и трансформируем файл, let's go!
+
+### 1. Создайте docker-compose файл
+Этот скрипт скачает образ MinIO и утилиту, которая создаст пользователя, ключи доступа и бакет.
+<Code code={code} lang="sh" title="docker-compose.minio.yml" />
+
+### 2. Создайте wait-for-it.sh
+
+Скопируйте файл из <a href="https://github.com/vishnubob/wait-for-it/blob/master/wait-for-it.sh" target="_blank">этого репозитория github</a>
+
+У вас должна получится такая файловая структура:
+<FileTree>
+- minio-for-local-development/
+  - docker-compose.minio.yml
+  - wait-for-it.sh
+</FileTree>
+
+### 3. Запустите скрипт
+
+export const startCode = `
+cd minio-for-local-development &&
+docker-compose -f docker-compose.minio.yml up
+`
+
+<Code code={startCode} lang="sh" title="docker-compose.minio.yml" />
+
+Установится minio, создастся пользователь, бакет и ключи для доступа.
+
+```
+// в консоли будет такой вывод, эти данные пригодятся на 5 шаге
+...
+minio_mc  | Username Minio UI: admin
+minio_mc  | Password Minio UI: admin123
+minio_mc  | Access Key: my_access_key
+minio_mc  | Secret Access Key: super_secret_key
+```
+
+### 4. Откройте доступ minio в интернет
+
+Можно использовать любой инструмент, пример будет на ngrok. Нужно открыть API порт minio в интернет.
+
+<Code code="ngrok http 9000" lang="sh" title="ngrok" />
+
+Скопируйте адрес из поля **Forwarding**:
+```
+// Пример:
+...
+Forwarding  https://332e-185-103-25-11.ngrok-free.app -> http://localhost:9000
+```
+
+### 5. Введите данные для подключения S3, полученные на предыдущих шагах.
+
+Настройки для подключения S3 в личном кабинете Default Uploader.
+
+```
+Access Key ID     -> my_access_key
+Secret Access Key -> super_secret_key
+Region            -> us-east-1
+Bucket            -> mybucket
+File endpoint     -> {URL} из шага 4
+```
+
+Нажмите кнопку **Сохранить** и **Проверить подключение**.
+Так же включите опцию **Мягкая миграция**, она пригодится на следующем шаге.
+
+### 6. Проверка.
+
+Зайдите в <a href="http://127.0.0.1:9001" target="_blank">консоль minio</a>
+
+Введите данные для входа
+
+```
+Username -> admin
+Password -> admin123
+```
+
+Зайдите в бакет <a href="http://127.0.0.1:9001/browser/mybucket" target="_blank">бакет</a> и загрузите в него любую картинку.
+
+<FileTree>
+- mybucket/
+  - cat.jpg
+</FileTree>
+
+Теперь сформируйте ссылку для получения файла и его оптимизации.
+
+``` https://api.defaultuploader.com/v1/image/upload/CLIENT_TOKEN/S3_FILE_PATH ```
+
+**CLIENT_TOKEN** возьмите из личного кабинета.
+
+У вас должна получится такая ссылка с вашим CLIENT_TOKEN и названием загруженного файла.
+
+```https://api.defaultuploader.com/v1/image/upload/66c78a393438de9506dd5e09/cat.jpg ```
+
+И добавьте параметр ?w=100
+
+```https://api.defaultuploader.com/v1/image/upload/66c78a393438de9506dd5e09/cat.jpg?w=100```
+
+Готово! Вы успешно подключили локальный S3 к Default Uploader.
+
+export const code = `version: '3.8'
+
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    environment:
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=admin123
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ':9001'
+
+  minio_mc:
+    image: minio/mc:latest
+    container_name: minio_mc
+    depends_on:
+      - minio
+    volumes:
+      - ./wait-for-it.sh:/wait-for-it.sh
+    entrypoint: >
+      sh -c "
+      chmod +x /wait-for-it.sh &&
+      /wait-for-it.sh minio:9000 --timeout=30 --strict &&
+      mc alias set myminio http://minio:9000 admin admin123 &&
+      if mc admin user info myminio my_access_key >/dev/null 2>&1; then
+        echo 'User my_access_key already exists, skipping user creation';
+      else
+        mc admin user add myminio my_access_key super_secret_key;
+      fi &&
+      if mc ls myminio/mybucket >/dev/null 2>&1; then
+        echo 'Bucket mybucket already exists, skipping bucket creation';
+      else
+        mc mb myminio/mybucket;
+      fi &&
+      if mc admin policy info myminio readwrite --user=my_access_key >/dev/null 2>&1; then
+        echo 'Policy readwrite already attached to user my_access_key, skipping policy attachment';
+      else
+        mc admin policy attach myminio readwrite --user=my_access_key;
+      fi &&
+      echo '
+        The first two keys are needed to log into the MinIO WebUI management console,
+        the second two keys are Access Key ID and Secret Access Key in your personal account admin.defaultuploader.com' &&
+        echo 'Username Minio UI: admin' &&
+        echo 'Password Minio UI: admin123' &&
+        echo 'Access Key: my_access_key' &&
+        echo 'Secret Access Key: super_secret_key'
+      "
+
+volumes:
+  minio_data:
+`

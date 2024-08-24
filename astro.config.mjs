@@ -1,8 +1,12 @@
 import { defineConfig, passthroughImageService } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import yaml from '@rollup/plugin-yaml';
 
 // https://astro.build/config
 export default defineConfig({
+	vite: {
+		plugins: [yaml()]
+	},
 	site: 'https://docs.defaultuploader.com',
 	image: {
 		service: passthroughImageService()
@@ -51,6 +55,10 @@ export default defineConfig({
 						{
 							label: 'S3 хранилища',
 							items: [
+								{
+									label: 'Локальное тестирование (MinIO)',
+									slug: 'start/s3-list/minio',
+								},
 								{
 									label: 'VK Cloud',
 									slug: 'start/s3-list/vk',

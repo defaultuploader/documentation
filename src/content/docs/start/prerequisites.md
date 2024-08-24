@@ -1,6 +1,5 @@
 ---
 title: Предварительные требования
-description: A reference page in my new Starlight docs site.
 prev: false
 ---
 

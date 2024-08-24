@@ -126,10 +126,10 @@ export default defineConfig({
 			// Set English as the default language for this site.
 			locales: {
 				// English docs in `src/content/docs/en/`
-				en: {
-					label: 'English',
-					lang: 'en',
-				},
+				// en: {
+				// 	label: 'English',
+				// 	lang: 'en',
+				// },
 				// Simplified Chinese docs in `src/content/docs/zh-cn/`
 				root: {
 					label: 'Русский',

@@ -59,7 +59,15 @@ export const exampleCodeCurlPut = `https://api.defaultuploader.com/v1/upload/sig
 <Code code={exampleCodeCurlPut} lang="sh" title={fileNameBash} />
 
 ### GET
-<Code code="https://api.defaultuploader.com/v1/image/upload/CLIENT_TOKEN/SOURCE_NAME.EXTENSION" lang="sh" title="METHOD: GET" />
+<Code code="https://api.defaultuploader.com/v1/MIME_TYPE/upload/CLIENT_TOKEN/S3_PATH" lang="sh" title="METHOD: GET" />
+
+```
+v1 — версия api
+MIME_TYPE — тип медиа(изображение, видео, аудио)
+CLIENT_TOKEN — токен из личного кибенета
+S3_PATH — путь до файла в вашем S3 хранилище
+```
+
 Запрос **GET** отдает файл со следующими заголовками:
 
 | Key            | Value                                |

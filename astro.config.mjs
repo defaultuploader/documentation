@@ -4,9 +4,6 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://docs.defaultuploader.com',
-	redirects: {
-		'/': '/ru'
-	},
 	image: {
 		service: passthroughImageService()
 	},
@@ -25,6 +22,8 @@ export default defineConfig({
 			},
 			social: {
 				github: 'https://github.com/orgs/defaultuploader/repositories',
+				telegram: 'https://t.me/defaultuploader',
+				email: 'mailto:support@defaultuploader.com',
 			},
 			sidebar: [
 				{
@@ -89,7 +88,6 @@ export default defineConfig({
 					collapsed: true,
 					items: [
 						// Each item here is one entry in the navigation menu.
-						{ label: 'Введение', slug: 'api/intro' },
 						{ label: 'REST', slug: 'api/rest' },
 						{
 							label: 'Основные возможности',
@@ -124,7 +122,7 @@ export default defineConfig({
 					],
 				},
 			],
-			defaultLocale: 'ru',
+			defaultLocale: 'root',
 			// Set English as the default language for this site.
 			locales: {
 				// English docs in `src/content/docs/en/`
@@ -133,7 +131,7 @@ export default defineConfig({
 					lang: 'en',
 				},
 				// Simplified Chinese docs in `src/content/docs/zh-cn/`
-				ru: {
+				root: {
 					label: 'Русский',
 					lang: 'ru',
 				},

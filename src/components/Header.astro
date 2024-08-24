@@ -22,7 +22,7 @@ const shouldRenderSearch =
         {shouldRenderSearch && <Search {...Astro.props} />}
     </div>
     <div class="sl-hidden md:sl-flex right-group">
-        <a class="header-link" href="https://admin.defaultuploader.com">{Astro.props.locale === 'ru' ? 'В личный кабинет': 'Panel'}</a>
+        <a class="header-link" href="https://admin.defaultuploader.com">{!Astro.props.locale ? 'В личный кабинет': 'Account'}</a>
         <div class="sl-flex social-icons">
             <SocialIcons {...Astro.props} />
         </div>
@@ -91,3 +91,45 @@ const shouldRenderSearch =
         }
     }
 </style>
+
+<script is:inline>
+    // If you know how to do it better, I will be glad to have suggestions :)
+
+    if (!window.eventListenerAdded) {
+        (function() {
+            const originalSetItem = localStorage.setItem;
+            const originalRemoveItem = localStorage.removeItem;
+
+            localStorage.setItem = function(key, value) {
+                const event = new Event('customLocalStorageChange');
+                event.key = key;
+                event.newValue = value;
+                window.dispatchEvent(event);
+                originalSetItem.apply(this, arguments);
+            };
+
+            localStorage.removeItem = function(key) {
+                const event = new Event('customLocalStorageChange');
+                event.key = key;
+                event.newValue = null;
+                window.dispatchEvent(event);
+                originalRemoveItem.apply(this, arguments);
+            };
+        })();
+
+        window.addEventListener('customLocalStorageChange', function(event) {
+            const images = document.querySelectorAll('[data-theming-img]');
+
+            for (const img of images) {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !event.newValue) {
+                    img.src = img.dataset.dark
+                } else if (event.key === 'starlight-theme' && event.newValue === 'dark') {
+                    img.src = img.dataset.dark
+                } else {
+                    img.src = img.dataset.light
+                }
+            }
+        });
+        window.eventListenerAdded = true
+    }
+</script>

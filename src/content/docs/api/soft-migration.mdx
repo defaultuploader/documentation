@@ -22,10 +22,14 @@ import { Aside } from "@astrojs/starlight/components";
 
 </FileTree>
 
-Для того чтобы получить файл вам нужно посмтрить такой **GET** запрос:
-- Необходимо взять весь путь от корневой папки в бакете и вставить после CLIENT_TOKEN
+Для того чтобы получить файл, нужно построить такой **GET** запрос:
+- Весь путь от корневой папки в бакете вставить после **CLIENT_TOKEN**
 
-<Code code="https://api.defaultuploader.com/v1/image/upload/CLIENT_TOKEN/mysite.com/cats/image/n.../file.jpg" lang="sh" title="METHOD: GET" />
+<Code code="https://api.defaultuploader.com/v1/MIME_TYPE/upload/CLIENT_TOKEN/mysite.com/cats/image/n.../file.jpg" lang="sh" title="METHOD: GET" />
+```
+MIME_TYPE — можете указать любой из (image | video | audio)
+Трансформации будут работать, независимо от указанного значения.
+```
 
 И простым добавлением параметра вы с легкостью трансформируете файл!
 

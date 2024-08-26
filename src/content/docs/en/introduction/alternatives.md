@@ -1,6 +1,5 @@
 ---
 title: Альтернативные решения
-description: A guide in my new Starlight docs site.
 ---
 
 ### Альтернативные решения для загрузки и оптимизации медиафайлов

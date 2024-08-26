@@ -1,6 +1,5 @@
 ---
 title: Когда использовать Default Uploader
-description: A guide in my new Starlight docs site.
 ---
 
 Default Uploader отличная альтернатива SaaS, CDN, Cloud сервисам 

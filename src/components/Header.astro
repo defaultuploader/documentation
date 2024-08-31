@@ -94,30 +94,37 @@ const shouldRenderSearch =
 
 <script is:inline>
     // If you know how to do it better, I will be glad to have suggestions :)
+    let prev = null
 
     if (!window.eventListenerAdded) {
         (function() {
             const originalSetItem = localStorage.setItem;
             const originalRemoveItem = localStorage.removeItem;
+            const event = new Event('customLocalStorageChange');
 
-            localStorage.setItem = function(key, value) {
-                const event = new Event('customLocalStorageChange');
+            function dispatchThemeEvent(key, value) {
+                if (key !== 'starlight-theme') return
+
                 event.key = key;
                 event.newValue = value;
                 window.dispatchEvent(event);
+            }
+
+            localStorage.setItem = function(key, value) {
+                dispatchThemeEvent(key, value);
                 originalSetItem.apply(this, arguments);
             };
 
             localStorage.removeItem = function(key) {
-                const event = new Event('customLocalStorageChange');
-                event.key = key;
-                event.newValue = null;
-                window.dispatchEvent(event);
+                dispatchThemeEvent(key, null);
                 originalRemoveItem.apply(this, arguments);
             };
         })();
 
         window.addEventListener('customLocalStorageChange', function(event) {
+            if (prev === event.newValue) return
+            prev = event.newValue
+
             const images = document.querySelectorAll('[data-theming-img]');
 
             for (const img of images) {
@@ -129,6 +136,8 @@ const shouldRenderSearch =
                     img.src = img.dataset.light
                 }
             }
+
+
         });
         window.eventListenerAdded = true
     }

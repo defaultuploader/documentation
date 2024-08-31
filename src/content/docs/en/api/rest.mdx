@@ -16,7 +16,9 @@ https://api.defaultuploader.com/v1/image/upload/S3_PATH_ORIGINAL
 # Требуется заголовок — authorization: SECRET_CLIENT_TOKEN
 `
 
-### Составной POST запрос multipart/form-data
+### POST
+Составной запрос multipart/form-data
+
 <Code code={postCode} lang="sh" title="METHOD: POST" />
 Для загрузки файлов необходимо получить секретный ключ в личном кабинете Default uploader и
 добавить заголовок `Authorization` в запрос:
@@ -31,16 +33,16 @@ export const fileNameBash = 'bash';
 Вы получите следующий ответ от сервера:
 
 export const exampleCodeResponse = `
-[
+[ // возвращается всегда коллекция
     {
-        "sourceName": "7uLbiXh7867H7dEPpsubV9.png",
-        "src": "https://api.defaultuploader.com/v1/image/upload/azxwjk4PCkLTFbuUYiQZ1j/7uLbiXh7867H7dEPpsubV9.png",
-        "originalSrc": "https://hb.vkcs.cloud/defaultuploader/image/png/7uLbiXh7867H7dEPpsubV9.png",
-        "originalName": "dark_theme.png",
-        "s3PathOriginal": "image/png/7uLbiXh7867H7dEPpsubV9.png",
-        "s3Path": "image/png/7uLbiXh7867H7dEPpsubV9.png",
-        "options": {},
-        "size": 1400308,
+        "sourceName": "7uLbiXh7867H7dEPpsubV9.png", // уникальный ID файла в бакете
+        "src": "https://api.defaultuploader.com/v1/image/upload/azxwjk4PCkLTFbuUYiQZ1j/7uLbiXh7867H7dEPpsubV9.png", // путь до файла через API
+        "originalSrc": "https://hb.vkcs.cloud/defaultuploader/image/png/7uLbiXh7867H7dEPpsubV9.png", // прямой путь до файла в бакете
+        "originalName": "dark_theme.png", // оригинальное название файла
+        "s3PathOriginal": "image/png/7uLbiXh7867H7dEPpsubV9.png", // путь до оригинального файла
+        "s3Path": "image/png/7uLbiXh7867H7dEPpsubV9.png", // путь до производного файла
+        "options": {}, // внутренние настройки
+        "size": 1400308, // размер в байтах
         "mimeType": "image",
         "format": "png"
     }
@@ -49,9 +51,10 @@ export const exampleCodeResponse = `
 
 <Code code={exampleCodeResponse} lang="json" title="JSON" />
 
-### Составной PUT запрос multipart/form-data с подписанной ссылкой
+### PUT
+Составной запрос multipart/form-data с подписанной ссылкой
 
-В <a href="./presigned-url" >этом</a> руководстве вы узнаете как получить подписанную ссылку.
+В <a href="./../presigned-url" >этом</a> руководстве вы узнаете как получить подписанную ссылку.
 
 export const exampleCodeCurlPut = `https://api.defaultuploader.com/v1/upload/sign/7uLbiXh7867H7dEPpsubV9/5447114698657692x-params12d848eaca5282asdasda44766906ebx-token1427afc2d42ab2a200555c5d6b47a48b29cbffaac19cf572314ddafasddfd627ac0cdfabd6a134ggjhoda42728180a845e719ca0e0ce797ac/my-custom-folder.com?expirationIn=3600`;
 
@@ -62,7 +65,7 @@ export const exampleCodeCurlPut = `https://api.defaultuploader.com/v1/upload/sig
 
 ```
 v1 — версия api
-MIME_TYPE — тип медиа(изображение, видео, аудио)
+MIME_TYPE — тип медиа(image, video, audio)
 CLIENT_TOKEN — токен из личного кибенета
 S3_PATH — путь до файла в вашем S3 хранилище
 ```

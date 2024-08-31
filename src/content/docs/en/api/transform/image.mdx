@@ -3,7 +3,7 @@ title: Изображения
 ---
 
 import Image from '@components/Image.astro'
-import { exampleSource } from "../../../../../components/examples.js";
+import { exampleSource } from "@components/examples.ts";
 import { Aside } from "@astrojs/starlight/components";
 import { Badge } from "@astrojs/starlight/components";
 
@@ -77,12 +77,12 @@ min 0, max 100 значение по умолчанию = 75
 <Badge text="alias: a" variant="caution" size="small" />
 <br/>
 ```
-animated=false
+animated=0
 ```
 
 Отключить анимацию у giff или webp
 
-<Image sources={exampleSource.animatedImages} alt="Пример изображения с параметрами" param="animated=false" />
+<Image sources={exampleSource.animatedImages} alt="Пример изображения с параметрами" param="animated=0" />
 <Image sources={exampleSource.animatedImages} alt="Пример изображения с параметрами" />
 
 ### fit

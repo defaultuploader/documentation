@@ -1,18 +1,18 @@
 ---
 title: Использование CDN с Default Uploader
 prev:
-  link: ./s3-storage
+  link: ./../s3-storage/
   label: Как подключить S3
 ---
 
 import Image from '@components/Image.astro'
 import {Aside} from "@astrojs/starlight/components"
 
-import Schema1Black from '../../../../../public/schema1_black.webp';
-import Schema1White from '../../../../../public/schema1_white.webp';
+import Schema1Black from '@public/schema1_black.webp';
+import Schema1White from '@public/schema1_white.webp';
 
-import Schema2Black from '../../../../../public/schema2_black.webp';
-import Schema2White from '../../../../../public/schema2_white.webp';
+import Schema2Black from '@public/schema2_black.webp';
+import Schema2White from '@public/schema2_white.webp';
 
 Default Uploader не имеет собственного CDN, поэтому для максимально эффективной работы сервиса рекомендуется направлять ваш трафик через CDN на Default Uploader.
 

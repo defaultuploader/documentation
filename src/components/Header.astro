@@ -93,7 +93,6 @@ const shouldRenderSearch =
 </style>
 
 <script is:inline>
-    // If you know how to do it better, I will be glad to have suggestions :)
     const storageKey = 'starlight-theme';
 
     const parseTheme = (theme) =>
@@ -121,18 +120,21 @@ const shouldRenderSearch =
         }
     }
 
-    document.querySelectorAll('starlight-theme-select')[0]?.querySelector('select')?.addEventListener('change', (e) => {
-        if (e.currentTarget instanceof HTMLSelectElement) {
-            themeChange(e.currentTarget.value)
-        }
-    });
-
     matchMedia(`(prefers-color-scheme: light)`).addEventListener('change', () => {
         if (loadTheme() === 'auto') themeChange(getPreferredColorScheme());
     });
 
     document.addEventListener("DOMContentLoaded", function() {
-        console.log("HTML загружен и разобран.");
+        const selects = document.querySelectorAll('starlight-theme-select')
+
+        selects.forEach(select => {
+            select.querySelector('select')?.addEventListener('change', (e) => {
+                if (e.currentTarget instanceof HTMLSelectElement) {
+                    themeChange(e.currentTarget.value)
+                }
+            });
+        })
+
         themeChange(getPreferredColorScheme())
     }, { once: true });
 

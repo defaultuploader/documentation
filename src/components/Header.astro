@@ -94,51 +94,47 @@ const shouldRenderSearch =
 
 <script is:inline>
     // If you know how to do it better, I will be glad to have suggestions :)
-    let prev = null
+    const storageKey = 'starlight-theme';
 
-    if (!window.eventListenerAdded) {
-        (function() {
-            const originalSetItem = localStorage.setItem;
-            const originalRemoveItem = localStorage.removeItem;
-            const event = new Event('customLocalStorageChange');
+    const parseTheme = (theme) =>
+        theme === 'auto' || theme === 'dark' || theme === 'light' ? theme : 'auto';
 
-            function dispatchThemeEvent(key, value) {
-                if (key !== 'starlight-theme') return
+    const loadTheme = () =>
+        parseTheme(typeof localStorage !== 'undefined' && localStorage.getItem(storageKey));
 
-                event.key = key;
-                event.newValue = value;
-                window.dispatchEvent(event);
+    const getPreferredColorScheme = () =>
+        matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+
+    const themeChange = (value) => {
+        const newValue = value
+
+        const images = document.querySelectorAll('[data-theming-img]');
+
+        for (const img of images) {
+            if (newValue === 'auto') {
+                img.src = img.dataset[getPreferredColorScheme()]
+            } else if (newValue === 'dark') {
+                img.src = img.dataset.dark
+            } else {
+                img.src = img.dataset.light
             }
-
-            localStorage.setItem = function(key, value) {
-                dispatchThemeEvent(key, value);
-                originalSetItem.apply(this, arguments);
-            };
-
-            localStorage.removeItem = function(key) {
-                dispatchThemeEvent(key, null);
-                originalRemoveItem.apply(this, arguments);
-            };
-        })();
-
-        window.addEventListener('customLocalStorageChange', function(event) {
-            if (prev === event.newValue) return
-            prev = event.newValue
-
-            const images = document.querySelectorAll('[data-theming-img]');
-
-            for (const img of images) {
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches && !event.newValue) {
-                    img.src = img.dataset.dark
-                } else if (event.key === 'starlight-theme' && event.newValue === 'dark') {
-                    img.src = img.dataset.dark
-                } else {
-                    img.src = img.dataset.light
-                }
-            }
-
-
-        });
-        window.eventListenerAdded = true
+        }
     }
+
+    document.querySelectorAll('starlight-theme-select')[0]?.querySelector('select')?.addEventListener('change', (e) => {
+        if (e.currentTarget instanceof HTMLSelectElement) {
+            themeChange(e.currentTarget.value)
+        }
+    });
+
+    matchMedia(`(prefers-color-scheme: light)`).addEventListener('change', () => {
+        if (loadTheme() === 'auto') themeChange(getPreferredColorScheme());
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        console.log("HTML загружен и разобран.");
+        themeChange(getPreferredColorScheme())
+    }, { once: true });
+
+    themeChange(getPreferredColorScheme())
 </script>

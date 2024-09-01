@@ -1,38 +1,40 @@
 ---
-title: Асинхронные трансформации
+
+title: Asynchronous Transformations
+
 ---
 
 import { Code } from "@astrojs/starlight/components";
 import { FileTree } from '@astrojs/starlight/components';
 import { Aside } from "@astrojs/starlight/components";
 
-Включите эту опцию в личном кабинете, чтобы обрабатывать файлы, которые были загружены другой системой.
-Это полезно, когда у вас есть уже загруженные файлы и вы хотите интегрировать Default Uploader в свое приложение.
+Enable this option in your dashboard to process files that were uploaded by another system. This is useful when you already have files uploaded and want to integrate Default Uploader into your application.
 
-Например у вас есть с бакет с файлами примерно с такой структурой:
+For example, if you have a bucket with files structured like this:
 
 <FileTree>
-  - bucket/ — корневая папка бакета
-    - mysite.com — первый уровень вложенности
-      - cats — второй уровень вложенности
-        - image — третий...
-          - n... — любой уровень вложенности
-            - file.jpg — название файла
+  - bucket/ — root folder of the bucket
+    - mysite.com — first level of nesting
+      - cats — second level of nesting
+        - image — third...
+          - n... — any level of nesting
+            - file.jpg — file name
 
 </FileTree>
 
-Для того чтобы получить файл, нужно построить такой **GET** запрос:
-- Весь путь от корневой папки в бакете вставить после **CLIENT_TOKEN**
+To retrieve a file, you need to construct a **GET** request:
+- Insert the entire path from the root folder in the bucket after **CLIENT_TOKEN**.
 
 <Code code="https://api.defaultuploader.com/v1/MIME_TYPE/upload/CLIENT_TOKEN/mysite.com/cats/image/n.../file.jpg" lang="sh" title="METHOD: GET" />
+
 ```
-MIME_TYPE — можете указать любой из (image | video | audio)
-Трансформации будут работать, независимо от указанного значения.
+MIME_TYPE — you can specify any of (image | video | audio)
+Transformations will work regardless of the specified value.
 ```
 
-И простым добавлением параметра вы с легкостью трансформируете файл!
+And with a simple addition of a parameter, you can easily transform the file!
 
-<Aside title="Легкая миграция со сторонних решений">
-  Cloudinary, Uploadcare и другие сервисы позволяют на платных тарифах создавать бэкапы в своих S3 хранилищах,
-  вам останется только подключить это хранилище к Default Uploader и вы сможете использовать свои ресурсы намного экономичнее!
+<Aside title="Easy Migration from Third-Party Solutions">
+  Cloudinary, Uploadcare, and other services allow you to create backups in your S3 storage on paid plans.
+  All you need to do is connect this storage to Default Uploader, and you can use your resources much more efficiently!
 </Aside>

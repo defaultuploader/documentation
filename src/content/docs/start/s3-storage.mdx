@@ -1,9 +1,13 @@
 ---
-title: Как подключить хранилище S3
-description: Подключите S3 хранилище, которое подходит вам больше всего.
+
+title: How to Connect S3 Storage
+
+description: Connect the S3 storage that suits you best.
+
 next:
   link: ../first-file/
-  label: Загрузить файл
+  label: Upload a File
+
 ---
 
 import { CardGrid } from '@astrojs/starlight/components';
@@ -16,32 +20,30 @@ import VKWhite from '@public/vkc_inline_white.svg';
 import BackblazeBlack from '@public/backblaze_black.svg';
 import BackblazeWhite from '@public/backblaze_white.svg';
 
-
 import SelectelWhite from '@public/selectel_black.svg';
 import SelectelBlack from '@public/selectel_white.svg';
 
 import MinIO from '@public/minio.png';
 
+You can choose any S3 storage provider.
 
-Вы можете выбрать любого провайдера S3 хранилища.
-
-В большинстве случаев алгоритм одинаковый, нужно создать сервисный аккаунт, получить secret и access key и создать бакет.
-**Endpoint url** и **region** можно найти в документации у провайдеров.
+In most cases, the process is the same: you need to create a service account, obtain the secret and access key, and create a bucket.
+The **Endpoint URL** and **region** can be found in the provider's documentation.
 
 <Aside type="tip">
-  Для тестирования можно использовать локально развернутый MinIO с доступом в интернет.
+  For testing, you can use a locally deployed MinIO with internet access.
 </Aside>
 
-Ниже представлено несколько инструкций для создания и подключения S3 хранилища, список будет пополняться.
+Below are several guides for creating and connecting S3 storage, and the list will continue to grow.
 
 <br/>
-<a href="https://github.com/defaultuploader/documentation/tree/master/src/content/docs/start/s3-list" target="_blank">Создайте PR</a>, чтобы добавить нового провайдера.
+<a href="https://github.com/defaultuploader/documentation/tree/master/src/content/docs/start/s3-list" target="_blank">Create a PR</a> to add a new provider.
 
-### Инструкции:
+### Instructions:
 
 <CardGrid>
-  <ImageCardLink href="../s3-list/minio" sources={[MinIO, MinIO]} alt="MinIO logo" />
-  <ImageCardLink href="../s3-list/vk" sources={[VKBlack, VKWhite]} alt="VK Cloud logo" />
-  <ImageCardLink href="../s3-list/backblaze" sources={[BackblazeBlack, BackblazeWhite]} alt="Backblaze logo" />
-  <ImageCardLink href="../s3-list/selectel" sources={[SelectelBlack, SelectelWhite]} alt="Selectel logo" />
+  <ImageCardLink href="../s3-list/minio/" sources={[MinIO, MinIO]} alt="MinIO logo" />
+  <ImageCardLink href="../s3-list/vk/" sources={[VKBlack, VKWhite]} alt="VK Cloud logo" />
+  <ImageCardLink href="../s3-list/backblaze/" sources={[BackblazeBlack, BackblazeWhite]} alt="Backblaze logo" />
+  <ImageCardLink href="../s3-list/selectel/" sources={[SelectelBlack, SelectelWhite]} alt="Selectel logo" />
 </CardGrid>

@@ -1,32 +1,39 @@
 ---
-title: Локальное подключение S3 к Default Uploader
+
+title: Local S3 Connection to Default Uploader
+
 next:
   link: ../../first-file/
-  label: Загрузить файл
+  label: Upload a File
+
 prev: false
+
 ---
 
 import { Code } from "@astrojs/starlight/components";
 import { FileTree } from '@astrojs/starlight/components';
 
-В этом руководстве мы локально запустим MinIO, подключим его к Default Uploader и трансформируем файл, let's go!
+In this guide, we will locally set up MinIO, connect it to Default Uploader, and transform a file. Let's go!
 
-### 1. Создайте docker-compose файл
-Этот скрипт скачает образ MinIO и утилиту, которая создаст пользователя, ключи доступа и бакет.
+### 1. Create a docker-compose file
+
+This script will download the MinIO image and a utility that will create a user, access keys, and a bucket.
+
 <Code code={code} lang="sh" title="docker-compose.minio.yml" />
 
-### 2. Создайте wait-for-it.sh
+### 2. Create wait-for-it.sh
 
-Скопируйте файл из <a href="https://github.com/vishnubob/wait-for-it/blob/master/wait-for-it.sh" target="_blank">этого репозитория github</a>
+Copy the file from <a href="https://github.com/vishnubob/wait-for-it/blob/master/wait-for-it.sh" target="_blank">this GitHub repository</a>.
 
-У вас должна получится такая файловая структура:
+Your file structure should look like this:
+
 <FileTree>
-- minio-for-local-development/
+  - minio-for-local-development/
   - docker-compose.minio.yml
   - wait-for-it.sh
 </FileTree>
 
-### 3. Запустите скрипт
+### 3. Run the script
 
 export const startCode = `
 cd minio-for-local-development &&
@@ -35,10 +42,10 @@ docker-compose -f docker-compose.minio.yml up
 
 <Code code={startCode} lang="sh" title="docker-compose.minio.yml" />
 
-Установится minio, создастся пользователь, бакет и ключи для доступа.
+MinIO will be installed, and a user, bucket, and access keys will be created.
 
 ```
-// в консоли будет такой вывод, эти данные пригодятся на 5 шаге
+// The console output will look like this; you'll need these details in step 5
 ...
 minio_mc  | Username Minio UI: admin
 minio_mc  | Password Minio UI: admin123
@@ -46,67 +53,67 @@ minio_mc  | Access Key: my_access_key
 minio_mc  | Secret Access Key: super_secret_key
 ```
 
-### 4. Откройте доступ minio в интернет
+### 4. Open MinIO to the internet
 
-Можно использовать любой инструмент, пример будет на ngrok. Нужно открыть API порт minio в интернет.
+You can use any tool for this; the example will use ngrok. You need to expose the MinIO API port to the internet.
 
 <Code code="ngrok http 9000" lang="sh" title="ngrok" />
 
-Скопируйте адрес из поля **Forwarding**:
+Copy the address from the **Forwarding** field:
+
 ```
-// Пример:
+// Example:
 ...
 Forwarding  https://332e-185-103-25-11.ngrok-free.app -> http://localhost:9000
 ```
 
-### 5. Введите данные для подключения S3, полученные на предыдущих шагах.
+### 5. Enter the S3 connection details obtained in the previous steps
 
-Настройки для подключения S3 в личном кабинете Default Uploader.
+S3 connection settings in the Default Uploader dashboard:
 
 ```
 Access Key ID     -> my_access_key
 Secret Access Key -> super_secret_key
 Region            -> us-east-1
 Bucket            -> mybucket
-File endpoint     -> {URL} из шага 4
+File endpoint     -> {URL} from step 4
 ```
 
-Нажмите кнопку **Сохранить** и **Проверить подключение**.
-Так же включите опцию **Мягкая миграция**, она пригодится на следующем шаге.
+Click the **Save** button and then **Check Connection**. Also, enable the **Soft Migration** option, which will be useful in the next step.
 
-### 6. Проверка.
+### 6. Verification
 
-Зайдите в <a href="http://127.0.0.1:9001" target="_blank">консоль minio</a>
+Go to the <a href="http://127.0.0.1:9001" target="_blank">MinIO console</a>.
 
-Введите данные для входа
+Enter the login details:
 
 ```
 Username -> admin
 Password -> admin123
 ```
 
-Зайдите в бакет <a href="http://127.0.0.1:9001/browser/mybucket" target="_blank">бакет</a> и загрузите в него любую картинку.
+Go to the bucket <a href="http://127.0.0.1:9001/browser/mybucket" target="_blank">bucket</a> and upload any image.
 
 <FileTree>
-- mybucket/
-  - cat.jpg
+  - mybucket/
+    - cat.jpg
 </FileTree>
 
-Теперь сформируйте ссылку для получения файла и его оптимизации.
+Now, generate a link to retrieve and optimize the file.
 
 ``` https://api.defaultuploader.com/v1/image/upload/CLIENT_TOKEN/S3_FILE_PATH ```
 
-**CLIENT_TOKEN** возьмите из личного кабинета.
+**CLIENT_TOKEN** can be found in your dashboard.
 
-У вас должна получится такая ссылка с вашим CLIENT_TOKEN и названием загруженного файла.
+You should end up with a link containing your CLIENT_TOKEN and the name of the uploaded file.
 
 ```https://api.defaultuploader.com/v1/image/upload/66c78a393438de9506dd5e09/cat.jpg ```
 
-И добавьте параметр ?w=100
+And add the parameter ?w=100
 
 ```https://api.defaultuploader.com/v1/image/upload/66c78a393438de9506dd5e09/cat.jpg?w=100```
 
-Готово! Вы успешно подключили локальный S3 к Default Uploader.
+Done! You have successfully connected a local S3 to Default Uploader.
 
 export const code = `version: '3.8'
 

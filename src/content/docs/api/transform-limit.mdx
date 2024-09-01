@@ -1,16 +1,18 @@
 ---
-title: Ограничения на количество трансформаций
+
+title: Transformation Limits
+
 ---
 
 import { Aside } from "@astrojs/starlight/components";
 
-В личном кабинете Default Uploader вы можете установить максимальное количество трансформаций для одного типа файла (изображение, видео).
+In your Default Uploader dashboard, you can set a maximum number of transformations for a specific file type (image, video).
 
-Если количество трансформаций уже достигло ограничения, то при следующем запросе на трансформацию будет передан оригинал файла.
+If the number of transformations has already reached the limit, the original file will be returned upon the next transformation request.
 
-<Aside title="Надежная защита ваших ресурсов" type="tip">
-  Строго рекомендуется установить значение.
+<Aside title="Protect Your Resources" type="tip">
+  It is highly recommended to set a limit.
 
-  Это полностью защищает от злоупотреблением API.
-  Злоумышленник не сможет заспамить ваш S3 такими запросами ?w=100, ?w=101 и тд.
+  This fully protects against API abuse.
+  An attacker won't be able to spam your S3 with requests like ?w=100, ?w=101, etc.
 </Aside>

@@ -1,6 +1,9 @@
 ---
+
 title: REST
+
 prev: false
+
 ---
 
 import { Code } from "@astrojs/starlight/components";
@@ -8,20 +11,21 @@ import { Code } from "@astrojs/starlight/components";
 export const postCode = `
 https://api.defaultuploader.com/v1/upload
 # multipart/form-data
-# Требуется заголовок — authorization: SECRET_CLIENT_TOKEN
+# Requires header — authorization: SECRET_CLIENT_TOKEN
 `
 
 export const deleteCode = `
 https://api.defaultuploader.com/v1/image/upload/S3_PATH_ORIGINAL
-# Требуется заголовок — authorization: SECRET_CLIENT_TOKEN
+# Requires header — authorization: SECRET_CLIENT_TOKEN
 `
 
 ### POST
-Составной запрос multipart/form-data
+Multipart/form-data request
 
 <Code code={postCode} lang="sh" title="METHOD: POST" />
-Для загрузки файлов необходимо получить секретный ключ в личном кабинете Default uploader и
-добавить заголовок `Authorization` в запрос:
+
+To upload files, you need to obtain a secret key in your Default Uploader dashboard and
+add the `Authorization` header to the request:
 
 export const exampleCodeCurl = `curl --location 'https://api.defaultuploader.com/v1/upload' \
 --header 'Authorization: YOUR_SECRET_CLIENT_TOKEN' \
@@ -30,19 +34,19 @@ export const fileNameBash = 'bash';
 
 <Code code={exampleCodeCurl} lang="sh" title={fileNameBash} />
 
-Вы получите следующий ответ от сервера:
+You will receive the following response from the server:
 
 export const exampleCodeResponse = `
-[ // возвращается всегда коллекция
+[ // always returns a collection
     {
-        "sourceName": "7uLbiXh7867H7dEPpsubV9.png", // уникальный ID файла в бакете
-        "src": "https://api.defaultuploader.com/v1/image/upload/azxwjk4PCkLTFbuUYiQZ1j/7uLbiXh7867H7dEPpsubV9.png", // путь до файла через API
-        "originalSrc": "https://hb.vkcs.cloud/defaultuploader/image/png/7uLbiXh7867H7dEPpsubV9.png", // прямой путь до файла в бакете
-        "originalName": "dark_theme.png", // оригинальное название файла
-        "s3PathOriginal": "image/png/7uLbiXh7867H7dEPpsubV9.png", // путь до оригинального файла
-        "s3Path": "image/png/7uLbiXh7867H7dEPpsubV9.png", // путь до производного файла
-        "options": {}, // внутренние настройки
-        "size": 1400308, // размер в байтах
+        "sourceName": "7uLbiXh7867H7dEPpsubV9.png", // unique file ID in the bucket
+        "src": "https://api.defaultuploader.com/v1/image/upload/azxwjk4PCkLTFbuUYiQZ1j/7uLbiXh7867H7dEPpsubV9.png", // file path through API
+        "originalSrc": "https://hb.vkcs.cloud/defaultuploader/image/png/7uLbiXh7867H7dEPpsubV9.png", // direct file path in the bucket
+        "originalName": "dark_theme.png", // original file name
+        "s3PathOriginal": "image/png/7uLbiXh7867H7dEPpsubV9.png", // original file path
+        "s3Path": "image/png/7uLbiXh7867H7dEPpsubV9.png", // derivative file path
+        "options": {}, // internal settings
+        "size": 1400308, // size in bytes
         "mimeType": "image",
         "format": "png"
     }
@@ -52,9 +56,9 @@ export const exampleCodeResponse = `
 <Code code={exampleCodeResponse} lang="json" title="JSON" />
 
 ### PUT
-Составной запрос multipart/form-data с подписанной ссылкой
+Multipart/form-data request with a presigned URL
 
-В <a href="./../presigned-url" >этом</a> руководстве вы узнаете как получить подписанную ссылку.
+In <a href="./../presigned-url/" >this guide</a>, you will learn how to obtain a presigned URL.
 
 export const exampleCodeCurlPut = `https://api.defaultuploader.com/v1/upload/sign/7uLbiXh7867H7dEPpsubV9/5447114698657692x-params12d848eaca5282asdasda44766906ebx-token1427afc2d42ab2a200555c5d6b47a48b29cbffaac19cf572314ddafasddfd627ac0cdfabd6a134ggjhoda42728180a845e719ca0e0ce797ac/my-custom-folder.com?expirationIn=3600`;
 
@@ -64,13 +68,13 @@ export const exampleCodeCurlPut = `https://api.defaultuploader.com/v1/upload/sig
 <Code code="https://api.defaultuploader.com/v1/MIME_TYPE/upload/CLIENT_TOKEN/S3_PATH" lang="sh" title="METHOD: GET" />
 
 ```
-v1 — версия api
-MIME_TYPE — тип медиа(image, video, audio)
-CLIENT_TOKEN — токен из личного кибенета
-S3_PATH — путь до файла в вашем S3 хранилище
+v1 — API version
+MIME_TYPE — media type (image, video, audio)
+CLIENT_TOKEN — token from the dashboard
+S3_PATH — file path in your S3 storage
 ```
 
-Запрос **GET** отдает файл со следующими заголовками:
+A **GET** request returns a file with the following headers:
 
 | Key            | Value                                |
 |----------------|--------------------------------------|
@@ -82,5 +86,6 @@ S3_PATH — путь до файла в вашем S3 хранилище
 | content-type   | image/png                            |
 
 ### DELETE
-Удаляет оригинал файла и все производные от него файлы.
+Deletes the original file and all derivative files.
+
 <Code code={deleteCode} lang="sh" title="METHOD: DELETE" />

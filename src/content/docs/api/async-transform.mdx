@@ -1,5 +1,7 @@
 ---
-title: Асинхронные трансформации
+
+title: Asynchronous Transformations
+
 ---
 
 import { Code } from "@astrojs/starlight/components";
@@ -8,12 +10,11 @@ import {Aside} from "@astrojs/starlight/components";
 
 ### transforms: ["w=100&h=100", "w=200&h=200"]
 
-Вместе с файлом, передайте опции для трансформации в форму с ключом **transforms.**
-Сразу же после загрузки файла начнется его трансформация.
+Along with the file, pass the transformation options in the form with the key **transforms.** Immediately after the file is uploaded, its transformation will begin.
 
-Опции формируются точно так же как и при трансформации с query запросом.
+The options are formatted in the same way as when performing a transformation with a query request.
 
-Чтобы получить два новых файла с размерами 100х100 и 200х200 нужно передать следующие опции:
+To get two new files with sizes 100x100 and 200x200, you need to pass the following options:
 
 export const exampleCodeCurl = `curl --location 'https://api.defaultuploader.com/v1/upload' \
 --header 'Authorization: YOUR_SECRET_CLIENT_TOKEN' \
@@ -24,20 +25,20 @@ export const fileName = 'bash';
 
 <Code code={exampleCodeCurl} lang="sh" title={fileName} />
 
-В результате у нас в бакете будет 3 файла:
+As a result, there will be 3 files in the bucket:
 
 <FileTree>
-- bucket/ — корневая папка бакета
-  - image — типа файла (изображение, видео, аудио, и др.)
-    - jpg — расширение файла
-      - file_name.jpg — оригинальный файл
-      - file_name.jpg_w=100&h=100 — преобразованный файл со сторонами 100px
-      - file_name.jpg_w=200&h=200 — преобразованный файл со сторонами 200px
+  - bucket/ — root folder of the bucket
+    - image — file type (image, video, audio, etc.)
+      - jpg — file extension
+      - file_name.jpg — original file
+      - file_name.jpg_w=100&h=100 — transformed file with dimensions 100px
+      - file_name.jpg_w=200&h=200 — transformed file with dimensions 200px
 
 </FileTree>
 
-<Aside title="Одно из лучших архитектурных решений" type="tip">
-  Таким образом, все файлы с заданными параметрами будут доступны сразу и не потребуется время на их трансформацию.
+<Aside title="One of the Best Architectural Solutions" type="tip">
+  In this way, all files with the specified parameters will be immediately available, and no time will be needed for their transformation.
 
-  С помощью этой функциональности можно реализовать <a href="../start/cdn#максимальная-выгода-от-default-uploader">архитектуру</a> с максимально выгодным использованием ресурсов.
+  Using this functionality, you can implement an <a href="../../start/cdn/#maximizing-benefits-from-default-uploader">architecture</a> with the most efficient use of resources.
 </Aside>

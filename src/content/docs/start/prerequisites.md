@@ -1,14 +1,17 @@
 ---
-title: Предварительные требования
+
+title: Prerequisites
+
 prev: false
+
 ---
 
-Чтобы начать работу с сервисом нужно выполнить 2 обязательных шага:
+To get started with the service, you need to complete two mandatory steps:
 
-### 1. Создайте аккаунт в Default Uploader
+### 1. Create an Account in Default Uploader
 
-Вам необходимо создать учетную запись на странице администратора [admin.defaultuplloader.com](https://admin.defaultuploader.com)
+You need to create an account on the administrator page [admin.defaultuploader.com](https://admin.defaultuploader.com)
 
-### 2. Подключите S3 хранилище к сервису
+### 2. Connect S3 Storage to the Service
 
-На странице администратора нужно заполнить блок **Настройки для подключения S3 и CDN** 
+On the administrator page, fill out the **S3 and CDN Connection Settings** section.

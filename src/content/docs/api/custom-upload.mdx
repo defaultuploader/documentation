@@ -1,5 +1,7 @@
 ---
-title: Загрузка с пользовательским (кастомным) путем
+
+title: Uploading with a Custom Path
+
 ---
 
 import { Code } from "@astrojs/starlight/components";
@@ -8,7 +10,7 @@ import { Aside } from "@astrojs/starlight/components";
 
 ### ?path=PATH
 
-Для того чтобы загрузить файл в пользовательскую папку вашего бакета необходимо добавить **query** параметр **?path=PATH**
+To upload a file to a custom folder in your bucket, you need to add the **query** parameter **?path=PATH**.
 
 export const exampleCodeCurl = `curl --location 'https://api.defaultuploader.com/v1/upload?path=mysite.com' \
 --header 'Authorization: YOUR_SECRET_CLIENT_TOKEN' \
@@ -17,28 +19,27 @@ export const fileNameBash = 'bash';
 
 <Code code={exampleCodeCurl} lang="sh" title={fileNameBash} />
 
-Если загрузить по такому пути **?path=mysite.com/cats**, то ваша файловая структура в бакете
-будет выглядеть следующим образом:
+If you upload with the path **?path=mysite.com/cats**, your file structure in the bucket will look like this:
 
 <FileTree>
-- bucket/ — корневая папка бакета
-  - mysite.com — кастомный путь
-    - cats — кастомный путь
-      - image — типа файла (изображение, видео, аудио, и др.)
-        - jpg — расширение файла
-          - file.jpg — название файла
+- bucket/ — root folder of the bucket
+  - mysite.com — custom path
+    - cats — custom path
+      - image — file type (image, video, audio, etc.)
+        - jpg — file extension
+          - file.jpg — file name
 
 </FileTree>
 
-<Aside title="Удобная струтуризация загруженных файлов">
-  Можно размещать файлы по уникальным идентификаторам пользователей.
-  Так будет легко отслеживать, сколько расходуют ресурсов пользователи.
+<Aside title="Convenient Organization of Uploaded Files">
+  You can organize files by unique user identifiers.
+  This makes it easy to track how many resources each user consumes.
 
   <FileTree>
-    - bucket/ — корневая папка бакета
-      - alise@gmail.com // 5gb
+    - bucket/ — root folder of the bucket
+      - alise@gmail.com // 5GB
         - cats/
-      - bob@gmail.com // 125gb
+      - bob@gmail.com // 125GB
         - cats/
         - dogs/
 

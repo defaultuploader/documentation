@@ -1,8 +1,11 @@
 ---
-title: Использование CDN с Default Uploader
+
+title: Using CDN with Default Uploader
+
 prev:
   link: ./../s3-storage/
-  label: Как подключить S3
+  label: How to Connect S3
+
 ---
 
 import Image from '@components/Image.astro'
@@ -14,28 +17,28 @@ import Schema1White from '@public/schema1_white.webp';
 import Schema2Black from '@public/schema2_black.webp';
 import Schema2White from '@public/schema2_white.webp';
 
-Default Uploader не имеет собственного CDN, поэтому для максимально эффективной работы сервиса рекомендуется направлять ваш трафик через CDN на Default Uploader.
+Default Uploader does not have its own CDN, so to maximize the efficiency of the service, it is recommended to route your traffic through a CDN to Default Uploader.
 
-<Aside type="caution" title="Важно">
-  Для производственной эксплуатации строго рекомендуется подключить CDN.
-  * В настройках CDN убедитесь, что параметры из запросов не игнорируются.
-  * По умолчанию сервис отдает файл и заголовок со временем жизни кэша 30 дней для успешного ответа
+<Aside type="caution" title="Important">
+  For production use, it is strongly recommended to connect a CDN.
+  * In the CDN settings, ensure that query parameters are not ignored.
+  * By default, the service returns the file with a cache lifetime header of 30 days for successful responses.
 </Aside>
 
-## Схема подключения CDN
+## CDN Integration Diagram
 
-### Лучшее решения для бизнеса
-Оптимальный вариант использования сервиса – направить CDN на https://api.defaultuploader.com.
-Это позволит вам воспользоваться всеми преимуществами динамической трансформации и оптимизации ресурсов, без необходимости сложной настройки вашего приложения.
+### Best Solution for Business
+The optimal way to use the service is to direct the CDN to https://api.defaultuploader.com.
+This will allow you to take full advantage of dynamic transformation and resource optimization without the need for complex configuration of your application.
 
 <Image href="#" sources={[Schema1Black, Schema1White]} alt="CDN schema" />
 
-### Максимальная выгода от Default uploader
-Направьте ваш CDN на объектное хранилище и загружайте файлы с асинхронной трансформацией.
-Все следующие запросы к файлам будут обрабатываться только вашим CDN, без использования ресурсов Default Uploader.
+### Maximizing Benefits from Default Uploader
+Direct your CDN to object storage and upload files with asynchronous transformation.
+All subsequent requests for files will be handled only by your CDN, without using Default Uploader's resources.
 
-<Aside type="caution" title="Внимание">
-  Имейте в виду, в этом сценарии не работает оптимизация 'на лету'
+<Aside type="caution" title="Attention">
+  Note that in this scenario, on-the-fly optimization does not work.
 </Aside>
 
 <Image href="#" sources={[Schema2Black, Schema2White]} alt="CDN schema" />

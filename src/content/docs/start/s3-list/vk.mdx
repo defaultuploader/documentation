@@ -1,33 +1,37 @@
 ---
+
 title: VK Cloud
+
 prev: false
+
 next:
   link: ../../first-file/
-  label: Загрузите первый файл
+  label: Upload Your First File
+
 ---
+
 import {Aside} from "@astrojs/starlight/components";
 import { Steps } from '@astrojs/starlight/components';
 
 <Steps>
-1. <a href="https://mcs.mail.ru/" target="blank">Перейдите в VK CLOUD</a> и создайте учетную запись
+  1. <a href="https://mcs.mail.ru/" target="blank">Go to VK CLOUD</a> and create an account.
 
-2. Перейдите на вкладку Объектное хранилище -> Бакеты
-3. Нажмите на **Добавить**
-4. Введите название бакета
-5. Настройка ACL по умолчанию: **public-read**
-6. Остальные настройки оставьте как есть и нажмите **Create a Bucket**
-7. Перейдите на вкладку **Объектное хранилище** -> **Бакеты**
-8. Нажмите на название бакета -> **Ключи**
-9. Нажмите на **Добавить ключ**
-10. Введите имя нажмите **Создать**
-11. Сохраните **Access Key ID** и **Secret Key** endpoint_url и region [в личном кабинете](https://admin.defaultuploader.com)
+  2. Go to the Object Storage -> Buckets tab.
+  3. Click on **Add**.
+  4. Enter the bucket name.
+  5. Default ACL setting: **public-read**.
+  6. Leave the other settings as they are and click **Create a Bucket**.
+  7. Go to the **Object Storage** -> **Buckets** tab.
+  8. Click on the bucket name -> **Keys**.
+  9. Click on **Add Key**.
+  10. Enter a name and click **Create**.
+  11. Save the **Access Key ID** and **Secret Key**, as well as the endpoint_url and region in your [dashboard](https://admin.defaultuploader.com).
 </Steps>
-<Aside title="File endpoint и Region">
+
+<Aside title="File endpoint and Region">
   ```
-  // лучше сверить с документацией провайдера
-  endpoint_url: https://hb.vkcs.cloud или https://hb.ru-msk.vkcs.cloud
+  // it's best to check with the provider's documentation
+  endpoint_url: https://hb.vkcs.cloud or https://hb.ru-msk.vkcs.cloud
   region: ru-msk
   ```
 </Aside>
-
-

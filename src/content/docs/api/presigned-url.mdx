@@ -1,28 +1,30 @@
 ---
-title: Presigned ссылка для загрузки файла
+
+title: Presigned URL for File Upload
+
 ---
 
 import { Code } from "@astrojs/starlight/components";
 import { Aside } from "@astrojs/starlight/components";
 
-С помощью подписанной ссылки можно безопасно загружать файлы с любого сайта и без авторизации!
+With a presigned URL, you can securely upload files from any site without authentication!
 
-Создать временную ссылку с кастомным путем.
+Create a temporary link with a custom path.
 
 export const code = `
-# expirationIn - значение в секундах
+# expirationIn - value in seconds
 /v1/sign/SECRET_CLIENT_TOKEN/CUSTOM_PATH_FOLDER?expirationIn=3600
 `
 
 <Code code={code} lang="sh" title="METHOD: GET" />
 
-Вы получите ссылку, по ней методом **PUT** отправьте файл и он будет загружен в ваш бакет без авторизационного ключа.
+You will receive a link. Use the **PUT** method to send a file to this link, and it will be uploaded to your bucket without an authorization key.
 
 ```
-// В ссылке зашифрован путь. Любое изменение ссылки приведет к неудачной загрузке.
-// Поэтому она безопасна, для передачи третьим лицам
+// The path is encrypted in the link. Any modification to the link will result in a failed upload.
+// Therefore, it is safe to share with third parties.
 
-Пример подписанной ссылки:
+Example of a presigned URL:
 https://api.defaultuploader.com/v1/upload/sign/huFtjXfdtfU8kzRB4roo2M  \
 /4261209739480817x-params7cdc34f921f1a8703c979dc0224b3a83x-token62bb1d \
 46ad31e402f4238a0ec4054a615bec5727dee08070bd9c2bbeb3f7c960dc0131eeefa9 \
@@ -30,19 +32,18 @@ https://api.defaultuploader.com/v1/upload/sign/huFtjXfdtfU8kzRB4roo2M  \
 dsfs.fdsf?expirationIn=3600
 ```
 
-<Aside title="Упрощенный вариент интеграции">
-  Вы можете не реализовывать передачу файла через свой бекенд-сервис.
+<Aside title="Simplified Integration Option">
+  You don't need to handle file transfers through your backend service.
 
-  Сценарий будет выглядеть следующим образом:
-  - Когда ваш клиент захочет загрузить файл, он делает запрос на ваш бекенд для получения ссылки.
-  - Ваш бекенд запрашивает у сервиса Default Uploader подписанную ссылку с таймаутом в 1 минуту (?expirationIn=3600)
-  и специальным путем — clinetid/folder.
-  - Ваш бекенд передает полученную ссылку клиенту, клиент загружает файл в ваш бакет по этой ссылке в указанную папку.
+  The scenario would look like this:
+  - When your client wants to upload a file, they request a link from your backend.
+  - Your backend requests a presigned URL with a 1-minute timeout (?expirationIn=3600) and a specific path — clientid/folder — from the Default Uploader service.
+  - Your backend then provides the link to the client, who uploads the file to your bucket using that link in the specified folder.
 </Aside>
 
-<Aside title="Можно генерировать сколько угодно подписанных ссылок" type="tip">
-  Но есть несколько ограничений:
-  - Максимальная продолжительность: 604800 секунд (1 неделя)
-  - Rate limit: 1000 ссылок в час (по запросу можно увеличить)
-  - Допустимая длина ссылки: 300 символов
+<Aside title="You can generate as many presigned URLs as you need" type="tip">
+  But there are some limitations:
+  - Maximum duration: 604800 seconds (1 week)
+  - Rate limit: 1000 links per hour (can be increased upon request)
+  - Maximum URL length: 300 characters
 </Aside>

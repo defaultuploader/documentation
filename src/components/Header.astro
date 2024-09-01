@@ -22,7 +22,7 @@ const shouldRenderSearch =
         {shouldRenderSearch && <Search {...Astro.props} />}
     </div>
     <div class="sl-hidden md:sl-flex right-group">
-        <a class="header-link" href="https://admin.defaultuploader.com">{!Astro.props.locale ? 'В личный кабинет': 'Account'}</a>
+        <a class="header-link" href="https://admin.defaultuploader.com">{!Astro.props.locale ? 'Account' : 'В личный кабинет'}</a>
         <div class="sl-flex social-icons">
             <SocialIcons {...Astro.props} />
         </div>

@@ -1,5 +1,7 @@
 ---
-title: Видео
+
+title: Video
+
 ---
 
 import Image from '@components/Image.astro'
@@ -8,35 +10,34 @@ import { exampleSource } from "@components/examples.ts";
 import { Aside } from "@astrojs/starlight/components";
 import { Badge } from "@astrojs/starlight/components";
 
-Трансформация видео ресурсоемкая операция, поэтому она занимает длительное время и сильно зависит от размера исходного файла.
-Рекомендуется используется <a href="../async-transform">асинхронную трансформацию</a> для преобразования видео.
+Video transformation is a resource-intensive operation, so it takes a significant amount of time and heavily depends on the size of the original file. It is recommended to use <a href="../async-transform/">asynchronous transformation</a> for video processing.
 
-Если видео файл еще не преобразовался, то будет отправлен ответ с заголовком `423`, это означает, что файл еще готов.
+If the video file has not yet been transformed, a response with a `423` status code will be sent, indicating that the file is not yet ready.
 
-Пример:
+Example:
 ```
-// оптимизировать размер видео ?q_a
+// optimize video size ?q_a
 https://api.defaultuploader.com/v1/video/upload/token/sample.mp4?q_a
 ```
 
 ### q_auto
 <Badge text="alias: q_a" variant="caution" size="small" />
 
-Устанавливает оптимальные настройки для видео, сохраняя качество и снижая размер файла.
+Sets optimal video settings, preserving quality while reducing file size.
 ```
 ?q_a
 ```
 
 <Video sources={exampleSource.videos} param="q_a" />
 
-<Aside title="Размер видео уменьшился в 7 раз!" type="tip">
-  Размер оригинального видео 50мб, после оптимизации он стал **7мб**
+<Aside title="The video size was reduced by 7 times!" type="tip">
+  The original video size was 50MB, and after optimization, it became **7MB**.
 </Aside>
 
 ### width
 <Badge text="alias: w" variant="caution" size="small" />
 
-Создает видео с заданной шириной с правильными пропорциями.
+Creates a video with the specified width while maintaining the correct aspect ratio.
 ```
 min 0, max 5000
 ```
@@ -46,7 +47,7 @@ min 0, max 5000
 ### height
 <Badge text="alias: h" variant="caution" size="small" />
 
-Создает видео с заданной высотой с правильными пропорциями.
+Creates a video with the specified height while maintaining the correct aspect ratio.
 ```
 min 0, max 5000
 ```
@@ -56,44 +57,44 @@ min 0, max 5000
 ### format
 <Badge text="alias: f" variant="caution" size="small" />
 
-Изменяет формат изображения.
+Changes the video format.
 ```
-Поддерживаемые форматы
-MP4, MOV, WEBM, AVI, по умолчанию mp4
+Supported formats
+MP4, MOV, WEBM, AVI, default is mp4
 ```
 
 ### vertical
 <Badge text="alias: vt" variant="caution" size="small" />
 
-Создает видео с форматом 9х16, вырезая по центру.
+Creates a video in a 9x16 format by cropping the center.
 ```
 ?vt
 ```
 
 <Video sources={exampleSource.videos} param="vt" />
 
-<Aside title="Идеально для социальных сетей" type="tip">
-  Мощная оптимизация видео с 50мб до **2.94мб** и популярный формат 9х16 для мобильных устройств
+<Aside title="Perfect for Social Media" type="tip">
+  Powerful video optimization from 50MB to **2.94MB** and the popular 9x16 format for mobile devices.
 </Aside>
 
 ### thumbnail
 
-Создает изображение превью из видео.
+Creates a thumbnail image from the video.
 
 ```
 ?thumbnail
-По умолчанию берется кадр из первых 100мс продолжительности видео
+By default, a frame from the first 100ms of the video is used.
 ```
 
 <Image sources={exampleSource.videos} param="thumbnail" />
 
 ### duration
 
-В какой момент создать превью для видео (thumbnail).
+Specifies the moment in the video to create the thumbnail.
 
 ```
-1 = 100мс
-Работает только со свойством thumbnail
+1 = 100ms
+Works only with the thumbnail property.
 ```
 
 <Image sources={exampleSource.videos} param="thumbnail&duration=311" />

@@ -1,40 +1,44 @@
 ---
-title: Сканирование изображений
+
+title: Image Scanning
+
 ---
 
 import { Code } from "@astrojs/starlight/components";
 import { FileTree } from '@astrojs/starlight/components';
 
-### Обнаружение нежелательного контента (NSFW)
+### NSFW Content Detection
 
-> Нажмите кнопку **Сканировать** в личном кабинете
+> Click the **Scan** button in your dashboard
 
-В результате сканирования будет сформирован текстовый файл с адресами файлов в S3, в которых был обнаружен NSFW контент.
+As a result of the scan, a text file will be generated with the addresses of files in your S3 storage where NSFW content was detected.
 
-Сканирование всего бакета занимает некоторое время, к вам на почту поступит уведомление о завершающем этапе сканирования,
-это означает, что процесс завершится примерно через минуту.
+Scanning the entire bucket takes some time. You will receive an email notification when the scanning process is in its final stage, indicating that the process will complete in about a minute.
 
-Чтобы сканировать только часть бакета, введите префикс - это часть пути, с которого надо начать сканирование.
+To scan only a portion of the bucket, enter a prefix—this is the part of the path where scanning should start.
 
-Чтобы просканировать папку dogs/ и все ее содержимое, включая вложенные папки,
-сохраните следующий путь в поле ввода в личном кабинете:
-<Code code="/mysite.com/dogs" lang="html" title="Введите префикс в бакете" />
+To scan the folder dogs/ and all its contents, including subfolders, enter the following path in the input field in your dashboard:
+
+<Code code="/mysite.com/dogs" lang="html" title="Enter Prefix in Bucket" />
+
 <FileTree>
   - bucket/
     - mysite.com
-      - **dogs/** — все файлы с этого уровня будут просканированы
-        - **hot-dogs/**
-          - ...
-      - cats/
+    - **dogs/** — all files at this level will be scanned
+      - **hot-dogs/**
         - ...
+    - cats/
+      - ...
 
 </FileTree>
 
-### Webhook на загрузку нежелательного контента (NSFW)
-Всякий раз, когда вы будете загружать файл, ваш файл будет просканирован на NSFW контент.
+### Webhook for NSFW Content Uploads
 
-Введите адрес вебхука, куда будет отправлено уведомление с подробной информацией об обнаруженном контенте.
-<Code code="https://holy-dogs.com/top-secret-pics" lang="html" title="Введите адрес вебхука" />
+Every time you upload a file, it will be scanned for NSFW content.
 
-Запрос будет отправлен методом POST без повторений. Так же эта информация нигде не сохраняется.
+Enter the webhook address where a notification with detailed information about the detected content will be sent.
+
+<Code code="https://holy-dogs.com/top-secret-pics" lang="html" title="Enter Webhook URL" />
+
+The request will be sent using the POST method with no retries. This information is also not stored anywhere.
 

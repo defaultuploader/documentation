@@ -1,11 +1,11 @@
 ---
-title: Когда использовать Default Uploader
+
+title: When to Use Default Uploader
+
 ---
 
-Default Uploader отличная альтернатива SaaS, CDN, Cloud сервисам 
-из-за уникальной бизнес модели, которая не привязывает к вендору S3 хранилища и CDN.
+Default Uploader is an excellent alternative to SaaS, CDN, and Cloud services due to its unique business model that doesn't lock you into a specific S3 storage vendor or CDN.
 
-Простая настройка, богатая функциональность и возможность миграции, делает этот сервис еще привлекательнее.
+Easy setup, rich functionality, and the ability to migrate make this service even more appealing.
 
-Если вы хотите, чтобы ваши медиа-активы всегда быстро доставлялись по интернету 
-и вы не беспокоились об инфраструктуре, поддержки и счетов, то смело интегрируйте Default Uploader в свое приложение!
+If you want your media assets to be delivered quickly over the internet without worrying about infrastructure, support, or billing, then confidently integrate Default Uploader into your application!

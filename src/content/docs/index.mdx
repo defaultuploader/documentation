@@ -1,13 +1,13 @@
 ---
-title: API для картинок и видео
-description: Загружайте, храните, преобразовывайте, оптимизируйте и доставляйте изображения, видео и документы.
+title: API for Images and Videos
+description: Upload, store, transform, optimize, and deliver images, videos, and documents.
 template: splash
 hero:
-  tagline: Загружайте, храните, преобразовывайте, оптимизируйте и доставляйте изображения, видео и документы.
+  tagline: Upload, store, transform, optimize, and deliver images, videos, and documents.
   image:
     file: ../../assets/logo.png
   actions:
-    - text: Начать интеграцию
+    - text: Start Integration
       link: ./start/prerequisites/
       icon: right-arrow
       variant: primary
@@ -20,19 +20,20 @@ hero:
 import {Card, CardGrid} from '@astrojs/starlight/components';
 
 <CardGrid>
-	<Card title="Простой и функциональный API" icon="pencil">
-		Просто добавьте параметры к URL.
+  <Card title="Simple and Functional API" icon="pencil">
+    Just add parameters to the URL.
     ```js
     image.jpg?width=100
     ```
-	</Card>
-	<Card title="Свободный выбор провайдера S3 и CDN" icon="puzzle">
-		Подключите любого провайдера S3 и CDN, без каких-либо условий.
-	</Card>
-	<Card title="Дополнительные возможности" icon="setting">
-		Ленивая трансформация, сканирование нежелательного контента, удаление фона, presigned URL для загрузки файлов и другие.
-	</Card>
-	<Card title="Легкая миграция" icon="sun">
-		Default Uploader не привязан к файловой структуре в S3, подключите существующее хранилище с файлами и начните работу.
-	</Card>
+  </Card>
+  <Card title="Freedom to Choose S3 and CDN Providers" icon="puzzle">
+    Connect to any S3 and CDN provider without any restrictions.
+  </Card>
+  <Card title="Additional Features" icon="setting">
+    Lazy transformation, unwanted content scanning, background removal, presigned URLs for file uploads, and more.
+  </Card>
+  <Card title="Easy Migration" icon="sun">
+    The Default Uploader is not tied to a specific S3 file structure, allowing you to connect existing storage and start working immediately.
+  </Card>
 </CardGrid>
+

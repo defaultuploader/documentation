@@ -4,27 +4,27 @@ title: Тарификация в Default Uploader
 
 import {Aside} from "@astrojs/starlight/components"
 
-<Aside type="tip" title="Бонус при регистрации">
-  Для нового аккаунта доступно 100 гб трафика и один час обработки файлов.
+<Aside type="tip" title="Sign-Up Bonus">
+  New accounts get 100 GB of traffic and one hour of file processing for free.
 </Aside>
 
-Default Uploader использует модель **"оплаты по факту использования"** (pay-as-you-go), где стоимость рассчитывается на основе потребленных ресурсов:
+Default Uploader uses a pay-as-you-go model, where costs are calculated based on the resources consumed:
 
-- **Трафик:** 1 гигабайт — 1 рубль. Трафик учитывается при загрузке или скачивании ресурса из хранилища.
-- **CPU time:** 1 секунда обработки файла — 1 копейка.
+- **Traffic:** $0.01 per gigabyte. Traffic is counted when uploading or downloading a resource from storage.
+- **CPU time:** $0.0001 per second of file processing..
 
-<Aside title="Порог оплаты">
-  На старте порог составляет 2000 рублей. Вы можете использовать сервис до достижения порога без оплаты и привязки карты.
+<Aside title="Payment Threshold">
+  Initially, the payment threshold is set at $20. You can use the service up to this threshold without payment or card attachment.
 
-  Этого хватит на 2ТБ трафика или 55 часов CPU time.
+  This is enough for 2 TB of traffic or 55 hours of CPU time.
 </Aside>
 
-### Расчет стоимости для проекта с Default Uploader и S3 и CDN от Yandex Cloud
+### Cost Estimation for a Project with Default Uploader, S3, and Yandex Cloud CDN
 
-Для проекта с 200 ГБ трафика в месяц, 50 ГБ хранилища S3 и 3 600 секунд CPU времени расчет стоимости следующий:
+For a project with 200 GB of traffic per month, 50 GB of S3 storage, and 3,600 seconds of CPU time, the cost breakdown is as follows:
 
-- Допустим CDN обрабатывает 90% запросов: 180 ГБ × 0,96 руб/ГБ = 172,80 руб.
-- Default Uploader (20 ГБ трафика + CPU): 20 ГБ × 1 руб/ГБ + 3 600 секунд × 0,01 руб/секунда = 56 руб.
-- Yandex Cloud S3 (хранилище и операции PUT/POST/PATCH и др.): 98,49 руб. + 4,80 руб. + 1,95 руб. = 30,27 руб.
+- Assuming the CDN handles 90% of requests: 180 GB × $0.01/GB = $1.80.
+- Default Uploader (20 GB traffic + CPU): 20 GB × $0.01/GB + 3,600 seconds × $0.0001/second = $0.56.
+- Yandex Cloud S3 (storage and PUT/POST/PATCH operations, etc.): $0.98 + $0.048 + $0.0195 = $1.05.
 
-> Итого: 172,80 руб. (CDN) + 56 руб. (Default Uploader) + 105,24 руб. (S3) = **334,04 руб. в месяц.**
+> Total: $1.80 (CDN) + $0.56 (Default Uploader) + $1.05 (S3) = **$3.41 per month.**

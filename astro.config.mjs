@@ -106,6 +106,11 @@ export default defineConfig({
                   slug: "start/s3-list/selectel",
                   translations: { ru: "Selectel" },
                 },
+                {
+                  label: "Cloud RU",
+                  slug: "start/s3-list/cloud-ru",
+                  translations: { ru: "Cloud RU" },
+                },
               ],
             },
             {

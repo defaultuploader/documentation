@@ -1,0 +1,72 @@
+---
+title: VK Cloud
+prev: false
+next:
+  link: ../../first-file/
+  label: Загрузите первый файл
+---
+import {Aside} from "@astrojs/starlight/components";
+import { Steps } from '@astrojs/starlight/components';
+
+### Перед началом работы
+
+<Steps>
+1. Авторизуйтесь в <a href="https://console.sbercloud.ru/?_gl=1*1n8gks*_gcl_au*MTU5OTIwMzA5OC4xNzI0Njc4Njkz" target="blank">личном кабинете</a>.
+  Подробнее об этом — в <a href="https://cloud.ru/docs/console/ug/topics/guides__auth.html" target="blank">руководстве по личному кабинету</a>.
+
+2. В выпадающем списке сверху выберите проект и перейдите в платформу Evolution.
+3. Проверьте, что у учетной записи указана роль не ниже Пользователь проекта или Пользователь сервиса. Если это не так, <a href="https://cloud.ru/docs/administration/ug/topics/guides__employees.html" target="blank">настройте права</a> настройте права или запросите их у администратора.
+4. Откройте раздел Хранение данных и убедитесь, что в списке сервисов есть Object Storage. Если сервиса нет в списке, <a href="https://cloud.ru/docs/s3e/ug/contacts/technical-support.html" target="blank">обратитесь в поддержку</a>.
+5. <a href="https://cloud.ru/docs/console_api/ug/topics/guides__service_accounts_create.html" target="_blank">Создайте сервисный аккаунт</a> и <a href="https://cloud.ru/docs/console_api/ug/topics/guides__service_accounts_key.html" target="_blank">получите ключи доступа</a>,
+либо используйте личную учетную запись с <a href="https://cloud.ru/docs/console_api/ug/topics/guides__api_key.html" target="_blank">персональным API-ключом</a>.
+
+</Steps>
+
+### Создайте бакет
+
+<Steps>
+  1. В <a href="https://console.sbercloud.ru/?_gl=1*19coecb*_gcl_au*MTU5OTIwMzA5OC4xNzI0Njc4Njkz" target="blank"> личном кабинете</a> выберите Evolution.
+
+  2. В разделе Хранение данных выберите Object Storage.
+  3. Нажмите Создать бакет.
+  4. В открывшемся окне укажите Название бакета, например test-bucket. Для дополнительной адресации к бакету вы можете указать Глобальное название и Доменное имя.
+</Steps>
+<Aside title="Примечание">
+  Подробнее о <a href="https://cloud.ru/docs/s3e/ug/topics/guides__bucket-create.html#guides-bucket-create-name-bucket-requirements" target="blank">требованиях к именованию</a>.
+</Aside>
+<Steps>
+  5. Выберите Класс хранения — Стандартный.
+</Steps>
+<details>
+  <summary>Почему стандартный класс хранения</summary>
+  Для стандартного хранилища существует <a href="https://cloud.ru/docs/s3e/ug/topics/overview__free-tier.html" target="_blank">уровень бесплатного пользования</a>.
+  Он подходит для хранения данных, к которым нужен частый доступ: медиа, писем и документов.
+
+  Если вы загружаете редкоиспользуемые бэкапы или архивы, выберите холодный или ледяной класс хранения.
+
+  Стоимость хранения, исходящиего трафика и операций рассчитывается согласно <a href="https://cloud.ru/docs/s3e/ug/topics/pricing.html" target="_blank">правилам тарификации</a>.
+</details>
+  либо используйте личную учетную запись с <a href="https://cloud.ru/docs/console_api/ug/topics/guides__api_key.html" target="_blank">персональным API-ключом</a>.
+<Steps>
+  6. Нажмите Создать.
+  7. В разделе *Object Storage API* сохраните:
+</Steps>
+```
+1. Endpoint
+2. ID тенанта
+3. Регион
+```
+
+### Настройте подключение в Default Uploader
+
+<Steps>
+  1. В <a href="https://admin.defaultuploader.com">личном кабинете</a> введите данные из пункта 7 *Создайте бакет* и 5 *Перед началом работы*
+  2. Нажмите *Сохранить* и *Проверить подключение*
+</Steps>
+
+<Aside title="Примечание">
+  Access Key ID формируется таким образом:
+  ```
+  {ID тенанта}:{ACCESS_KEY}
+  ```
+</Aside>

@@ -4,15 +4,16 @@ interface Props {
     /** [0] — for white theme, [1] — for black theme */
     sources: typeof exampleSource.images;
     alt: string;
-    param?: string
+    param?: string;
+    width?: number;
 }
 
-const { sources, alt, param } = Astro.props;
+const { sources, alt, param, width } = Astro.props;
 
 const images = param ? sources.map((source) => ({src: `${source.src}?${param}`})) : sources
 
 ---
 <figure>
-    <img loading="lazy" data-theming-img data-light={images[0].src} data-dark={images[1].src} src={images[0].src} alt={alt} >
+    <img width={width} loading="lazy" data-theming-img data-light={images[0].src} data-dark={images[1].src} src={images[0].src} alt={alt} >
     {param ? <figcaption>{param}</figcaption> : ''}
 </figure>

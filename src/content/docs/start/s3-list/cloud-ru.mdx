@@ -1,0 +1,75 @@
+---
+title: VK Cloud
+prev: false
+next:
+  link: ../../first-file/
+  label: Upload the first file
+---
+import {Aside} from "@astrojs/starlight/components";
+import { Steps } from '@astrojs/starlight/components';
+
+### Before Getting Started
+
+<Steps>
+  1. Log in to your <a href="https://console.sbercloud.ru/?_gl=1*1n8gks*_gcl_au*MTU5OTIwMzA5OC4xNzI0Njc4Njkz" target="blank">personal account</a>.
+  More details can be found in the <a href="https://cloud.ru/docs/console/ug/topics/guides__auth.html" target="blank">personal account guide</a>.
+
+  2. In the dropdown menu at the top, select the project and go to the Evolution platform.
+  3. Make sure the account has a role of at least Project User or Service User. If not, <a href="https://cloud.ru/docs/administration/ug/topics/guides__employees.html" target="blank">adjust permissions</a> or request them from the administrator.
+  4. Open the Data Storage section and ensure Object Storage is listed among the services. If it's not, <a href="https://cloud.ru/docs/s3e/ug/contacts/technical-support.html" target="blank">contact support</a>.
+  5. <a href="https://cloud.ru/docs/console_api/ug/topics/guides__service_accounts_create.html" target="_blank">Create a service account</a> and <a href="https://cloud.ru/docs/console_api/ug/topics/guides__service_accounts_key.html" target="_blank">get access keys</a>, or use your personal account with a <a href="https://cloud.ru/docs/console_api/ug/topics/guides__api_key.html" target="_blank">personal API key</a>.
+
+</Steps>
+
+### Create a Bucket
+
+<Steps>
+  1. In your <a href="https://console.sbercloud.ru/?_gl=1*19coecb*_gcl_au*MTU5OTIwMzA5OC4xNzI0Njc4Njkz" target="blank">personal account</a>, select Evolution.
+
+  2. In the Data Storage section, choose Object Storage.
+  3. Click Create Bucket.
+  4. In the pop-up window, specify the Bucket Name, for example, test-bucket. For additional addressing, you can provide a Global Name and Domain Name.
+</Steps>
+
+<Aside title="Note">
+  More about the <a href="https://cloud.ru/docs/s3e/ug/topics/guides__bucket-create.html#guides-bucket-create-name-bucket-requirements" target="blank">naming requirements</a>.
+</Aside>
+
+<Steps>
+  5. Choose the storage class — Standard.
+</Steps>
+
+<details>
+  <summary>Why Standard Storage Class?</summary>
+  Standard storage has a <a href="https://cloud.ru/docs/s3e/ug/topics/overview__free-tier.html" target="_blank">free usage tier</a>.
+  It is suitable for storing frequently accessed data like media, emails, and documents.
+
+  If you're uploading infrequently used backups or archives, choose cold or frozen storage.
+
+  Storage costs, outgoing traffic, and operations are calculated according to the <a href="https://cloud.ru/docs/s3e/ug/topics/pricing.html" target="blank">pricing rules</a>.
+</details>
+
+<Steps>
+  6. Click Create.
+  7. In the *Object Storage API* section, save:
+</Steps>
+
+```
+1. Endpoint
+2. Tenant ID
+3. Region
+```
+
+### Set Up Connection in Default Uploader
+
+<Steps>
+  1. In your <a href="https://admin.defaultuploader.com">personal account</a>, enter the details from step 7 *Create a Bucket* and step 5 *Before Getting Started*
+  2. Click *Save* and *Test Connection*
+</Steps>
+
+<Aside title="Note">
+  The Access Key ID is formed like this:
+  ```
+  {Tenant ID}:{ACCESS_KEY}
+  ```
+</Aside>

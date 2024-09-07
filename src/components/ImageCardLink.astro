@@ -4,16 +4,17 @@ interface Props {
     sources: { src: string }[];
     alt: string;
     href: string;
+    width: number;
 }
 
 import Image from './Image.astro'
 
-const { sources, alt, href } = Astro.props;
+const { sources, alt, href, width } = Astro.props;
 
 ---
 
 <a href={href} class="card link sl-flex">
-    <Image sources={sources} alt={alt} />
+    <Image width={width} sources={sources} alt={alt} />
 </a>
 
 <style>

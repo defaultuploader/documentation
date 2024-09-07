@@ -107,9 +107,9 @@ export default defineConfig({
                   translations: { ru: "Selectel" },
                 },
                 {
-                  label: "Cloud RU",
+                  label: "cloud.ru",
                   slug: "start/s3-list/cloud-ru",
-                  translations: { ru: "Cloud RU" },
+                  translations: { ru: "cloud.ru" },
                 },
               ],
             },
@@ -184,7 +184,6 @@ export default defineConfig({
             {
               label: "Transformations",
               translations: { ru: "Трансформации" },
-              collapsed: true,
               items: [
                 {
                   label: "Images",

@@ -14,6 +14,6 @@ const images = param ? sources.map((source) => ({src: `${source.src}?${param}`})
 
 ---
 <figure>
-    <img width={width} loading="lazy" data-theming-img data-light={images[0].src} data-dark={images[1].src} src={images[0].src} alt={alt} >
+    <img width={width} loading="lazy" style="visibility: hidden" data-theming-img data-light={images[0].src} data-dark={images[1].src} src="" alt={alt} >
     {param ? <figcaption>{param}</figcaption> : ''}
 </figure>

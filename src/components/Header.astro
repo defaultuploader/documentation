@@ -93,25 +93,19 @@ const shouldRenderSearch =
 </style>
 
 <script is:inline>
-    const storageKey = 'starlight-theme';
-
-    const parseTheme = (theme) =>
-        theme === 'auto' || theme === 'dark' || theme === 'light' ? theme : 'auto';
-
-    const loadTheme = () =>
-        parseTheme(typeof localStorage !== 'undefined' && localStorage.getItem(storageKey));
-
     const getPreferredColorScheme = () =>
         matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
 
     const themeChange = (value) => {
-        const newValue = value
+        const newValue = value || document.documentElement.dataset.theme
 
         const images = document.querySelectorAll('[data-theming-img]');
 
         for (const img of images) {
+            img.style.visibility = 'initial'
+
             if (newValue === 'auto') {
-                img.src = img.dataset[getPreferredColorScheme()]
+                img.src = img.dataset[newValue]
             } else if (newValue === 'dark') {
                 img.src = img.dataset.dark
             } else {
@@ -121,7 +115,7 @@ const shouldRenderSearch =
     }
 
     matchMedia(`(prefers-color-scheme: light)`).addEventListener('change', () => {
-        if (loadTheme() === 'auto') themeChange(getPreferredColorScheme());
+        themeChange(getPreferredColorScheme());
     });
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -130,13 +124,11 @@ const shouldRenderSearch =
         selects.forEach(select => {
             select.querySelector('select')?.addEventListener('change', (e) => {
                 if (e.currentTarget instanceof HTMLSelectElement) {
-                    themeChange(e.currentTarget.value)
+                    themeChange()
                 }
             });
         })
 
-        themeChange(getPreferredColorScheme())
-    }, { once: true });
-
-    themeChange(getPreferredColorScheme())
+        themeChange()
+    });
 </script>

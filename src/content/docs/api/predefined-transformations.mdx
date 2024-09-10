@@ -1,0 +1,24 @@
+---
+title: Predefined Transformations
+prev: false
+editUrl: false
+---
+
+Create transformation rules during file uploads, as well as default transformations for all files!
+
+### Predefined File Set
+
+```html
+This rule will create a set of images for different screen sizes and image formats.
+
+['w=360', 'w=768', 'w=1024']
+['w=360&f=avif', 'w=768&f=avif', 'w=1024&f=avif']
+```
+
+### Default File Transformation
+
+```html
+This rule will enable file transformation with the specified settings without any parameters.
+
+['f=auto&q=75&w=768']
+```

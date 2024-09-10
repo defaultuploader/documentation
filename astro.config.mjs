@@ -179,6 +179,12 @@ export default defineConfig({
                   slug: "api/transform-limit",
                   translations: { ru: "Лимит трансформаций" },
                 },
+                {
+                  label: "Predefined Transformations",
+                  slug: "api/predefined-transformations",
+                  translations: { ru: "Предопределенные трансформации" },
+                  badge: { text: 'coming soon', variant: 'tip' },
+                },
               ],
             },
             {

@@ -1,0 +1,40 @@
+---
+title: Предварительные требования
+prev: false
+---
+
+import {Aside} from "@astrojs/starlight/components";
+import {Badge} from "@astrojs/starlight/components";
+
+
+Чтобы начать работу с сервисом нужно выполнить 2 обязательных шага:
+
+### 1. Создайте аккаунт в Default Uploader
+
+Вам необходимо создать учетную запись на странице администратора [admin.defaultuplloader.com](https://admin.defaultuploader.com)
+
+### 2. Подключите S3 хранилище к сервису
+
+На странице администратора нужно заполнить блок **Настройки для подключения S3 и CDN**
+
+### CDN Middleware <Badge text="Скоро" variant="tip" />
+<Aside type="tip" title="Прокачайте ваш CDN">
+Направьте CDN на Default Uploader с API_KEY в качестве поддомена или укажите HOST в настройках в личном кабинете
+и используйте сервис без S3!
+
+```
+// CDN настройки
+domain          origin
+cdn.site.com    api.defaultuploader.com
+```
+
+В своем приложении измените адрес для ваших изображений и видео.
+```
+https://sitename.com/image.jpg -> https://cdn.sitename.com/image.jpg
+```
+
+И включите оптимизацию!
+```
+https://cdn.sitename.com/image.jpg?q=75
+```
+</Aside>

@@ -1,0 +1,39 @@
+---
+title: Prerequisites
+prev: false
+---
+
+import {Aside} from "@astrojs/starlight/components";
+import {Badge} from "@astrojs/starlight/components";
+
+
+To start using the service, you need to complete 2 mandatory steps:
+
+### 1. Create an account in Default Uploader
+
+You need to create an account on the admin page [admin.defaultuplloader.com](https://admin.defaultuploader.com)
+
+### 2. Connect an S3 storage to the service
+
+On the admin page, you need to fill in the **Settings for connecting S3 and CDN** section.
+
+### CDN Middleware <Badge text="Coming soon" variant="tip" />
+<Aside type="tip" title="Boost your CDN">
+Point your CDN to Default Uploader with API_KEY as a subdomain or specify the HOST in the settings in your personal account and use the service without S3!
+
+```
+// CDN settings
+domain          origin
+cdn.site.com    api.defaultuploader.com
+```
+
+In your application, change the URL for your images and videos.
+```
+https://sitename.com/image.jpg -> https://cdn.sitename.com/image.jpg
+```
+
+And enable optimization!
+```
+https://cdn.sitename.com/image.jpg?q=75
+```
+</Aside>

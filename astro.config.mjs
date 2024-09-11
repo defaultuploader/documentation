@@ -185,6 +185,12 @@ export default defineConfig({
                   translations: { ru: "Предопределенные трансформации" },
                   badge: { text: 'coming soon', variant: 'tip' },
                 },
+                {
+                  label: "Fetch",
+                  slug: "api/fetch",
+                  translations: { ru: "Fetch" },
+                  badge: { text: 'coming soon', variant: 'tip' },
+                },
               ],
             },
             {

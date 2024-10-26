@@ -191,6 +191,12 @@ export default defineConfig({
                   translations: { ru: "Fetch" },
                   badge: { text: 'coming soon', variant: 'tip' },
                 },
+                {
+                  label: "CDN Middleware",
+                  slug: "api/cdn-middleware",
+                  translations: { ru: "CDN Middleware" },
+                  badge: { text: 'coming soon', variant: 'tip' },
+                },
               ],
             },
             {
@@ -211,8 +217,14 @@ export default defineConfig({
             },
             {
               label: "Application Examples",
-              slug: "api/examples",
               translations: { ru: "Примеры приложений" },
+              items: [
+                {
+                  label: "NodeJS",
+                  slug: "api/examples/node-js",
+                  translations: { ru: "NodeJS" },
+                }
+              ]
             },
           ],
         },

@@ -1,0 +1,62 @@
+---
+
+title: File Upload Server
+
+prev: false
+
+editUrl: false
+
+---
+import importedCode from '/src/codes/nodejs.js?raw';
+import { Code, FileTree } from "@astrojs/starlight/components";
+
+This NodeJS application allows files to be uploaded to S3.
+
+### How the Application Works
+
+The server accepts files at the */upload* route, creates FormData with the received file using the *multer* library,
+and uploads the file to the Default Uploader. The server then responds with information about the uploaded files from the Default Uploader.
+
+This is a classic example for scenarios where your users need to upload photos, videos, or documents.
+### Server Implementation
+
+Create the application
+
+<Code code="mkdir myuploaderserver && cd myuploaderserver && npm init -y" lang="basch" title="create nodejs app" />
+
+Create an index.js file; your file structure should look like this.
+
+<FileTree>
+- myuploaderserver/
+  - package.json
+  - index.js
+
+</FileTree>
+
+Copy the code below into index.js
+
+<Code code={importedCode} lang="js" title="express server" />
+
+Install dependencies
+
+<Code code="npm i axios express multer form-data" lang="basch" title="dependencies" />
+
+Start the server
+
+<Code code="node index.js" lang="js" title="express server" />
+
+### Testing
+
+Use Postman to send a *multipart/form-data* request to `http://localhost:3000/upload` with an attached file.
+Don’t forget to include your `SECRET_CLIENT_TOKEN` in the code.
+
+export const code = `
+curl --location 'http://localhost:3000/upload' \
+--header 'Content-Type: image/svg+xml' \
+--header 'Authorization: SECRET_CLIENT_TOKEN' \
+--form 'image=@"/C:/Users/user/Desktop/image.jpg"'
+`
+
+Or with CURL
+
+<Code code={code} lang="curl" title="CURL" />

@@ -1,0 +1,63 @@
+---
+
+title: Сервер для загрузки файлов
+
+prev: false
+
+editUrl: false
+
+---
+import importedCode from '/src/codes/nodejs.js?raw';
+import { Code, FileTree } from "@astrojs/starlight/components";
+
+Это приложение на NodeJS позволяет загружать файлы в S3.
+
+### Как работает приложение
+
+Сервер принимает файлы по пути */upload*, создает *FormData* с полученным файлом с помощью библиотеки
+*multer* и загружает файл в Default Uploader, так же в ответ сервер отдает информацию по загруженным файлам от Default Uploader.
+
+Это классический пример для сценария, когда вашим пользователям нужно загрузить фото, видео или документ.
+
+### Реализация сервера
+
+Создайте приложение
+
+<Code code="mkdir myuploaderserver && cd myuploaderserver && npm init -y" lang="basch" title="create nodejs app" />
+
+Создайте index.js файл, у вас должны быть такая файловая структура.
+
+<FileTree>
+- myuploaderserver/
+  - package.json
+  - index.js
+
+</FileTree>
+
+Скопируйте код ниже в index.js
+
+<Code code={importedCode} lang="js" title="express server" />
+
+Установите зависимости
+
+<Code code="npm i axios express multer form-data" lang="basch" title="dependencies" />
+
+Запустите сервер
+
+<Code code="node index.js" lang="js" title="express server" />
+
+### Тестирование
+
+С помощью Postman отправьте запрос *multipart/form-data* на `http://localhost:3000/uplad` с прикрепленным файлом.
+Не забудьте в коде вставить ваш `SECRET_CLIENT_TOKEN`.
+
+export const code = `
+curl --location 'http://localhost:3000/upload' \
+--header 'Content-Type: image/svg+xml' \
+--header 'Authorization: SECRET_CLIENT_TOKEN' \
+--form 'image=@"/C:/Users/user/Desktop/image.jpg"'
+`
+
+Или с CURL
+
+<Code code={code} lang="curl" title="CURL" />

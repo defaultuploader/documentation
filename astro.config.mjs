@@ -180,15 +180,14 @@ export default defineConfig({
                   translations: { ru: "Лимит трансформаций" },
                 },
                 {
-                  label: "Predefined Transformations",
-                  slug: "api/predefined-transformations",
-                  translations: { ru: "Предопределенные трансформации" },
-                  badge: { text: 'coming soon', variant: 'tip' },
-                },
-                {
                   label: "Fetch",
                   slug: "api/fetch",
                   translations: { ru: "Fetch" },
+                },
+                {
+                  label: "Predefined Transformations",
+                  slug: "api/predefined-transformations",
+                  translations: { ru: "Предопределенные трансформации" },
                   badge: { text: 'coming soon', variant: 'tip' },
                 },
                 {

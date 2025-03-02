@@ -4,11 +4,45 @@ prev: false
 editUrl: false
 ---
 
-Specify the file URL and the necessary parameters for transformation.
+import {Aside, Code, Badge} from "@astrojs/starlight/components"
+
+## Fetching Images by URL
+
+This method allows you to download an image from a specified URL and apply necessary transformations (such as resizing, optimization, and other parameters).
+
+### Usage
+
+Specify the remote file URL and the required parameters in the request URL.
+
+Request format:
+```
+GET /v1/image/fetch/{remote-file-url}
+```
+
+### Example
+
+Suppose you need to fetch an image from `https://hot-dogs.com/holy-pick.jpg` and resize its width to 100 pixels. The request would look like this:
 
 ```
-The image will be fetched from https://hot-dogs.com/holy-pick.jpg
-and optimized with ?w=100
-
-https://api.defaultuploader.com/v1/image/fetch/66c78a3b3438de9506dd5e93/https://hot-dogs.com/holy-pick.jpg?w=100
+https://api.defaultuploader.com/v1/image/fetch/{CLIENT_TOKEN}/https://hot-dogs.com/holy-pick.jpg?w=100
 ```
+
+### Limitations
+
+<Aside title="/fetch/{remote-file-url}">
+  Rate-limit: 50 requests per 5 seconds (can be increased upon request).
+</Aside>
+
+## Saving Fetched Files to S3 <Badge text="Coming soon" variant="tip" />
+
+You can configure whether fetched files should be saved to S3 storage. There are two options:
+
+1. **Enable auto-save in your account settings**: All files fetched via `/fetch` will be automatically stored in your S3 storage.
+2. **Use a dedicated endpoint**: If auto-save is disabled, you can explicitly save a specific file by using the `/fetch/keep` endpoint:
+
+```
+GET https://api.defaultuploader.com/v1/image/fetch/keep/{CLIENT_TOKEN}/https://hot-dogs.com/holy-pick.jpg?w=100
+```
+
+This approach allows for flexible control over which files should be stored.
+

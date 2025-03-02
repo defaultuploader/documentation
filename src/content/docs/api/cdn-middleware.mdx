@@ -5,31 +5,29 @@ editUrl: false
 
 import { Steps } from "@astrojs/starlight/components";
 
-## Введение
+## Introduction
 
-Default Uploader — как промежуточное программное обеспечение между CDN и вашим приложением. Эта функциональность позволит оптимизировать
-ваши файлы самым простым способом.
+Default Uploader acts as middleware between the CDN and your application. This functionality allows you to optimize your files in the simplest way possible.
 
-## Настройка
+## Setup
 
 <Steps>
-  1. Создайте поддомен для ваших медиа файлов у вашего CDN провайдера и установить origin на api.defaultuploader.com.
-
-  2. В вашем приложении установите адрес для ваших файлов с поддоменом **cdn**.
-  3. Задайте настройки для оптимизации по умолчанию для всех файлов в личном кабинете.
+  1. Create a subdomain for your media files with your CDN provider and set the origin to api.defaultuploader.com.
+  2. In your application, set the file address using the **cdn** subdomain.
+  3. Configure default optimization settings for all files in your personal account.
 </Steps>
 
-Поддомен может быть как SECRET_KEY или другое значение, которое можно установить в личном кабинете.
+The subdomain can be either a SECRET_KEY or another value that can be set in your personal account.
 
-## Пример
+## Example
 
 ```
-// было
+// before
 <img src="https://site.com" />
 
-// стало
+// after
 <img src="https://cdn.site.com" />
 
-// например, по умолчанию установлена опция [quality=75, format=auto]
-Изображение было оптимизировано и преобразовано в оптимальный формат для бразуера с которого был сделан запрос
+// for example, if the default settings include [quality=75, format=auto]
+The image has been optimized and converted to the optimal format for the browser making the request.
 ```

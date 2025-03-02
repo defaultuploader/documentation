@@ -119,12 +119,11 @@ face, auto
 Optional parameter for "smart" cropping. Adjusts the margins.
 
 ```
-min 0.1, max 1
-0.1 - is 10% of the image's side
+min 1, max 10, step 0.1
 ```
 
 <Image sources={exampleSource.images} alt="Example image with parameters" param="h=600&w=600&func=face&zoom=1" />
-<Image sources={exampleSource.images} alt="Example image with parameters" param="h=600&w=600&func=face&zoom=0.3" />
+<Image sources={exampleSource.images} alt="Example image with parameters" param="h=600&w=600&func=face&zoom=2" />
 
 ### blur
 Creates a blurred image
@@ -231,7 +230,7 @@ Removes the background from the image
 
 <Image sources={exampleSource.images} alt="Example image with parameters" param="rm_bg" />
 
-<Image sources={exampleSource.images} alt="Example image with parameters" param="rm_bg&func=face&z=0.3&rs=50" />
+<Image sources={exampleSource.images} alt="Example image with parameters" param="rm_bg&func=face&z=2&rs=50" />
 
 <Aside title="Easy Avatar Creation" type="tip">
   Add background removal, smart crop, zoom, and rounded corners parameters.

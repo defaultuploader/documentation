@@ -118,12 +118,11 @@ face, auto
 Опциональный параметр для "умного" кропа. Регулирует отступы.
 
 ```
-min 0.1, max 1
-0.1 - это 10% от стороны изображения
+min 1, max 10, step 0.1
 ```
 
 <Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=600&w=600&func=face&zoom=1" />
-<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=600&w=600&func=face&zoom=0.3" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="h=600&w=600&func=face&zoom=2" />
 
 ### blur
 Создает размытое изображение
@@ -230,7 +229,7 @@ min 0 max 100
 
 <Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="rm_bg" />
 
-<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="rm_bg&func=face&z=0.3&rs=50" />
+<Image sources={exampleSource.images} alt="Пример изображения с параметрами" param="rm_bg&func=face&z=2&rs=50" />
 <Aside title="Просто создать аватарку" type="tip">
   Добавьте параметры удаления фона, "умный" кроп, зум и скругления краев
 </Aside>

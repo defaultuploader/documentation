@@ -227,6 +227,28 @@ export default defineConfig({
             },
           ],
         },
+        {
+          label: "Legal Information",
+          translations: { ru: "Юридическая информация" },
+          collapsed: true,
+          items: [
+            {
+              label: "Terms of Use",
+              slug: "legal/terms-of-use",
+              translations: { ru: "Пользовательское соглашение" },
+            },
+            {
+              label: "Public Offer Agreement",
+              slug: "legal/public-offer-agreement",
+              translations: { ru: "Публичная оферта" },
+            },
+            {
+              label: "Payment Details",
+              slug: "legal/payment-details",
+              translations: { ru: "Реквизиты" },
+            },
+          ],
+        },
       ],
       defaultLocale: "root",
       locales: {

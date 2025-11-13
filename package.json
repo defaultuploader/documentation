@@ -11,13 +11,14 @@
     "deploy": "aws s3 cp ./dist/ s3://docs.defaultuploader.com/ --recursive  --endpoint-url https://storage.yandexcloud.net"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.2",
-    "@astrojs/starlight": "^0.25.5",
-    "astro": "^4.10.2",
-    "sharp": "^0.32.5",
-    "typescript": "^5.5.4"
+    "@astrojs/check": "^0.9.5",
+    "@astrojs/starlight": "^0.36.2",
+    "astro": "^5.15.5",
+    "sharp": "^0.34.5",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "@rollup/plugin-yaml": "^4.1.2"
+    "@rollup/plugin-yaml": "^4.1.2",
+    "remove-markdown": "^0.6.2"
   }
 }

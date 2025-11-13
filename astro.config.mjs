@@ -24,11 +24,11 @@ export default defineConfig({
         ru: "Default Uploader Docs",
         en: "Default Uploader Docs",
       },
-      social: {
-        github: "https://github.com/orgs/defaultuploader/repositories",
-        telegram: "https://t.me/defaultuploader",
-        email: "mailto:support@defaultuploader.com",
-      },
+      social: [
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/orgs/defaultuploader/repositories' },
+        { icon: 'telegram', label: 'Telegram', href: 'https://t.me/defaultuploader' },
+        { icon: 'email', label: 'Email', href: 'mailto:support@defaultuploader.com' },
+      ],
       sidebar: [
         {
           label: "Introduction",

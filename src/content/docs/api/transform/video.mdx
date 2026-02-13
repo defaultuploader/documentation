@@ -98,3 +98,25 @@ Works only with the thumbnail property.
 ```
 
 <Image sources={exampleSource.videos} param="thumbnail&duration=311" />
+
+### keyframe
+<Badge text="alias: kf" variant="caution" size="small" />
+
+Sets the keyframe interval (GOP size) for the video. A keyframe interval defines how often a full frame is inserted into the video stream. Lower values improve seek accuracy and editing precision but increase file size.
+
+```
+min 1, max 120
+?keyframe=30
+```
+
+### kf_boost
+
+Enables an adaptive keyframe placement strategy. When enabled, keyframes are placed more frequently at the beginning of the video (every 0.5 seconds during the first 5 seconds) and less frequently afterward (every 2 seconds). This improves initial playback and seek performance for the start of the video.
+
+```
+?kf_boost
+```
+
+<Aside type="caution">
+  The `kf_boost` parameter takes priority over `keyframe`. If both are specified, only `kf_boost` will be applied.
+</Aside>

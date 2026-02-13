@@ -38,6 +38,10 @@ export async function GET() {
 
 ${siteUrl}/llm-full.txt
 
+## Context7
+
+${siteUrl}/context7.md
+
 ## Sections
 
 `;
